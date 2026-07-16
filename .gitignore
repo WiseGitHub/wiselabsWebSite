@@ -1,0 +1,12 @@
+# Not part of the website — keep these out of the repo
+
+# Old redesign draft
+attempt.txt
+
+# Local editor / preview config
+.claude/
+
+# OS clutter
+Thumbs.db
+desktop.ini
+.DS_Store
