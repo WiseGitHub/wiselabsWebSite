@@ -198,6 +198,21 @@
   .sec-index{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--dim);white-space:nowrap}
   .sec-cta{margin-top:28px;display:flex;justify-content:center}
   .sec-note{margin:26px 0 0;text-align:center;font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+  /* Tutorial (vectorized guide) */
+  .tut{display:grid;grid-template-columns:.8fr 1.2fr;gap:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--panel);margin-top:4px}
+  @media (max-width:900px){.tut{grid-template-columns:1fr}}
+  .tut-fig{margin:0;background:var(--void-2);border-right:1px solid var(--line);display:flex;align-items:center;justify-content:center;padding:26px}
+  @media (max-width:900px){.tut-fig{border-right:0;border-bottom:1px solid var(--line)}}
+  .tut-fig svg{width:100%;height:auto;max-width:400px}
+  .tut-body{padding:clamp(24px,3.5vw,38px);display:flex;flex-direction:column;gap:14px}
+  .tut-body h3{font-size:clamp(1.4rem,3vw,1.95rem);margin:6px 0 0;letter-spacing:-.01em;line-height:1.12}
+  .tut-lead{color:var(--silver);margin:0;font-size:1rem}
+  .tut-lead b{color:var(--ink)}
+  .tut-steps{list-style:none;counter-reset:s;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:16px}
+  .tut-steps li{position:relative;padding-left:40px;color:var(--silver);font-size:.94rem;line-height:1.5;counter-increment:s}
+  .tut-steps li::before{content:counter(s);position:absolute;left:0;top:0;width:26px;height:26px;border-radius:7px;display:grid;place-items:center;font-family:var(--mono);font-size:.74rem;font-weight:700;color:var(--accent-ink);background:var(--accent)}
+  .tut-steps .k{font-weight:700}
+  .tut-steps .tut-hint{display:block;margin-top:4px;font-family:var(--mono);font-size:.68rem;letter-spacing:.02em;line-height:1.5;color:var(--dim)}
 
   /* ============ Music ============ */
   .music-panel{
@@ -396,6 +411,7 @@
       <a class="navlink" href="#generators">Patcher Gen</a>
       <a class="navlink" href="#effects">Patcher FX</a>
       <a class="navlink" href="#downloads">Downloads</a>
+      <a class="navlink" href="#tips">Tips</a>
       <a class="navlink" href="#about">About</a>
       <span class="social">
         <a class="btn-yt" href="https://www.youtube.com/@wiselabsmusic" target="_blank" rel="noopener" aria-label="WiseLabs on YouTube">
@@ -1052,6 +1068,83 @@
         <span class="dl-info"><span class="dl-name">Sliced Synth Sequences</span><span class="dl-kind">FL Mobile · 500 loops</span><span class="dl-soon">In the FL Mobile shop</span></span>
       </div>
     </div>
+  </section>
+
+  <!-- ===================== TIPS & TRICKS ===================== -->
+  <section id="tips" class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="kicker">Tips &amp; Tricks</span>
+        <h2>Tips &amp; Tutorials</h2>
+        <p>Practical techniques and full safety guide for <b style="color:var(--ink)">clean</b> <span style="color:var(--accent)">sample production</span>.</p>
+      </div>
+      <span class="sec-index">TIP · 01</span>
+    </div>
+
+    <article class="tut reveal">
+      <figure class="tut-fig">
+        <svg viewBox="0 0 740 404" role="img" aria-label="Volume envelope guide. A green attack rises to a 0 dB peak; a peach line holds the sustain across the top; from the peak, magenta linear decay and pink curved decay fall to a single silent node at bottom-right; where the sustain ends, a blue linear release and a cyan curved release fall to the same node; an amber tail marks the silence after the sample. The time axis is graduated.">
+          <path d="M40 18 V372" stroke="#2a2f38" stroke-width="1.5"/>
+          <path d="M40 372 H716" stroke="#2a2f38" stroke-width="1.5"/>
+          <!-- filled zones (back to front) -->
+          <path d="M40 372 L92 18 L700 372 Z" fill="#b56b7d" fill-opacity=".5"/>
+          <path d="M92 18 L450 18 L700 372 Z" fill="#6f9fbe" fill-opacity=".5"/>
+          <path d="M450 18 L700 372 C700 200 590 50 450 18 Z" fill="#7c9a7e" fill-opacity=".5"/>
+          <path d="M40 372 L92 18 C62 42 44 150 40 372 Z" fill="#8fd633" fill-opacity=".22"/>
+          <!-- faint dB graduation lines -->
+          <path d="M40 113 H700" stroke="#ffffff" stroke-opacity=".05" stroke-dasharray="2 6"/>
+          <path d="M40 208 H700" stroke="#ffffff" stroke-opacity=".05" stroke-dasharray="2 6"/>
+          <path d="M40 303 H700" stroke="#ffffff" stroke-opacity=".05" stroke-dasharray="2 6"/>
+          <!-- sustain held at 0 dB (peach) -->
+          <path d="M92 18 H450" fill="none" stroke="#f3c9a2" stroke-width="5" stroke-linecap="round"/>
+          <!-- decay from the peak: pink curved (behind), magenta linear -->
+          <path d="M92 18 C300 70 590 330 700 372" fill="none" stroke="#ff8fd0" stroke-width="4" stroke-linecap="round"/>
+          <path d="M92 18 L700 372" fill="none" stroke="#ff1e9a" stroke-width="5" stroke-linecap="round"/>
+          <!-- decay after sustain (starts where the peach ends): cyan curved, blue linear -->
+          <path d="M450 18 C590 50 700 200 700 372" fill="none" stroke="#33d2e6" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M450 18 L700 372" fill="none" stroke="#2f86e0" stroke-width="5" stroke-linecap="round"/>
+          <!-- attack: yellow power edge, green line -->
+          <path d="M40 372 C44 150 62 42 92 18" fill="none" stroke="#eaf03a" stroke-width="3" stroke-opacity=".85" stroke-linecap="round"/>
+          <path d="M40 372 L92 18" fill="none" stroke="#8fd633" stroke-width="5" stroke-linecap="round"/>
+          <!-- convergence node (all decays meet here) -->
+          <circle cx="700" cy="372" r="5" fill="#0f1015" stroke="#eef2f8" stroke-width="2"/>
+          <!-- amber silent tail -->
+          <path d="M700 372 H736" fill="none" stroke="#ff9a3d" stroke-width="5" stroke-linecap="round"/>
+          <!-- time graduations -->
+          <g stroke="#3d434c" stroke-width="1.5">
+            <path d="M92 372 V381"/><path d="M147 372 V378"/><path d="M202 372 V381"/><path d="M257 372 V378"/>
+            <path d="M312 372 V381"/><path d="M367 372 V378"/><path d="M422 372 V381"/><path d="M477 372 V378"/>
+            <path d="M532 372 V381"/><path d="M587 372 V378"/><path d="M642 372 V378"/><path d="M700 372 V381"/>
+          </g>
+          <!-- curve legend -->
+          <text x="24" y="210" text-anchor="middle" transform="rotate(-90 24 210)" font-family="ui-monospace,monospace" font-size="12" letter-spacing="2" fill="#8fd633">ATTACK</text>
+          <text x="250" y="35" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" letter-spacing="2" fill="#f3c9a2">SUSTAIN</text>
+          <text x="232" y="332" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" letter-spacing="2" fill="#ff1e9a">DECAY</text>
+          <text x="602" y="176" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12" letter-spacing="2" fill="#33d2e6">RELEASE</text>
+          <!-- axis labels -->
+          <text x="46" y="15" font-family="ui-monospace,monospace" font-size="12" fill="#7a8290">0 dB</text>
+          <text x="46" y="368" font-family="ui-monospace,monospace" font-size="13" fill="#7a8290">-&#8734;</text>
+          <text x="662" y="396" font-family="ui-monospace,monospace" font-size="11" letter-spacing="2" fill="#7a8290">TIME</text>
+        </svg>
+      </figure>
+      <div class="tut-body">
+        <span class="kicker">Tutorial · Sample Production</span>
+        <h3>Clean Sample Envelopes: Transient In, Tail Out</h3>
+        <p class="tut-lead">Clicks happen when amplitude changes too abruptly. The goal is simple: <b>enter and leave the sound smoothly</b> — without needlessly weakening its transient or its tail.</p>
+        <ol class="tut-steps">
+          <li><span class="k" style="color:#8fd633">Attack</span> — use the shortest fade that removes the click.
+            <span class="tut-hint">Typical 0.1–2 ms for percussion; longer for low-end or badly-cut material. Judge transient loss against the remaining click.</span></li>
+          <li><span class="k" style="color:#ff1e9a">Decay</span> — shapes the transition from the peak down to the sustain level.
+            <span class="tut-hint">Steep = tighter, more percussive; <span style="color:#ff8fd0">slower or curved</span> = softer, more natural. Still applies even when sustain is zero.</span></li>
+          <li><span class="k" style="color:#f3c9a2">Sustain</span> — the level held while the note stays active.
+            <span class="tut-hint">A level, not a duration. High for held sounds, low for plucks, zero for one-shot-style envelopes.</span></li>
+          <li><span class="k" style="color:#2f86e0">Release</span> — returns smoothly to silence when the note is let go.
+            <span class="tut-hint">Short = controlled; <span style="color:#33d2e6">longer</span> = more spacious. Depends on the playback mode, and very short releases can click.</span></li>
+          <li><span class="k" style="color:#ff9a3d">Check the boundaries</span> — make sure the gain envelope reaches zero amplitude at both ends.
+            <span class="tut-hint">For loops, inspect both loop points and crossfade if needed. Also watch for DC offset and abrupt processing changes.</span></li>
+        </ol>
+      </div>
+    </article>
   </section>
 
   <!-- ===================== ABOUT ===================== -->
