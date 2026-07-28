@@ -95,11 +95,11 @@
 
   /* ============ Accent control (top strip) ============ */
   .accentbar{background:var(--void-2);border-bottom:1px solid var(--line)}
-  .accentbar .wrap{display:flex;align-items:center;justify-content:flex-end;gap:12px;height:36px}
+  .accentbar .wrap{display:flex;align-items:center;gap:12px;height:36px;max-width:none}
   .accentbar .lbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
   .swatch{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent-glow);flex-shrink:0}
   input.hue{
-    -webkit-appearance:none;appearance:none;width:170px;max-width:38vw;height:6px;border-radius:999px;cursor:pointer;
+    -webkit-appearance:none;appearance:none;flex:1;min-width:120px;width:auto;height:6px;border-radius:999px;cursor:pointer;
     background:linear-gradient(90deg,hsl(0 95% 56%),hsl(40 95% 56%),hsl(80 95% 52%),hsl(140 80% 48%),hsl(180 85% 50%),hsl(220 95% 58%),hsl(240 95% 60%));
     outline-offset:4px;
   }
@@ -114,7 +114,10 @@
   .dice svg{width:15px;height:15px}
 
   /* ============ Header ============ */
-  .site-header{position:sticky;top:0;z-index:60;background:rgba(6,6,8,.62);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid var(--line)}
+  .topstack{position:sticky;top:0;z-index:60;transition:box-shadow .25s}
+  .topstack.scrolled{box-shadow:0 14px 34px -20px rgba(0,0,0,.9)}
+  .site-header{position:relative;background:rgba(7,7,10,.8);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border-bottom:1px solid var(--line);transition:background .25s,border-color .25s}
+  .topstack.scrolled .site-header{background:rgba(7,7,10,.97);border-bottom-color:var(--line-2)}
   .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;height:64px}
   .brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
   .brand .logo{width:126px;height:auto}
@@ -193,9 +196,9 @@
   .music-panel p{color:var(--silver);margin:14px 0 0;max-width:46ch}
   .music-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
   .eq{display:flex;align-items:flex-end;justify-content:center;gap:5px;height:150px;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--void-2)}
-  .eq i{width:8px;border-radius:4px 4px 2px 2px;background:linear-gradient(180deg,var(--accent-2),var(--accent-deep));opacity:.9;height:30%;animation:eq 1.4s ease-in-out infinite}
-  @keyframes eq{0%,100%{height:22%}50%{height:92%}}
-  @media (prefers-reduced-motion:reduce){.eq i{animation:none;height:55%}}
+  .eq i{width:8px;border-radius:4px 4px 2px 2px;background:linear-gradient(180deg,var(--accent-2),var(--accent-deep));opacity:.9;height:100%;transform:scaleY(.3);transform-origin:bottom;animation:eq 1.4s ease-in-out infinite;will-change:transform}
+  @keyframes eq{0%,100%{transform:scaleY(.22)}50%{transform:scaleY(.92)}}
+  @media (prefers-reduced-motion:reduce){.eq i{animation:none;transform:scaleY(.55)}}
 
   /* ============ Cards / units ============ */
   .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -358,18 +361,7 @@
   </linearGradient>
 </defs></svg>
 
-<!-- Accent hue control -->
-<div class="accentbar">
-  <div class="wrap">
-    <span class="lbl">Accent</span>
-    <span class="swatch" aria-hidden="true"></span>
-    <input class="hue" type="range" min="0" max="240" value="28" aria-label="Accent color hue" />
-    <button class="dice" type="button" aria-label="Randomize accent color" title="Randomize">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg>
-    </button>
-  </div>
-</div>
-
+<div class="topstack">
 <header class="site-header">
   <div class="wrap nav">
     <a class="brand" href="#top" aria-label="WiseLabs — home">
@@ -398,6 +390,19 @@
     </nav>
   </div>
 </header>
+
+<!-- Accent hue control -->
+<div class="accentbar">
+  <div class="wrap">
+    <span class="lbl">Accent</span>
+    <span class="swatch" aria-hidden="true"></span>
+    <input class="hue" type="range" min="0" max="240" value="28" aria-label="Accent color hue" />
+    <button class="dice" type="button" aria-label="Randomize accent color" title="Randomize">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg>
+    </button>
+  </div>
+</div>
+</div>
 
 <main id="top">
   <!-- ===================== HERO ===================== -->
@@ -1133,6 +1138,13 @@
     });
   }
 
+  // sticky top bar (nav + accent selector): solidify once scrolled off the top
+  var topbar = document.querySelector(".topstack");
+  if (topbar){
+    var onScroll = function(){ topbar.classList.toggle("scrolled", window.scrollY > 8); };
+    onScroll(); window.addEventListener("scroll", onScroll, {passive:true});
+  }
+
   // reveal on scroll
   var items = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window && !reduce){
@@ -1151,30 +1163,60 @@
   function resize(){ var r=canvas.getBoundingClientRect(); w=r.width; h=r.height; canvas.width=Math.floor(w*dpr); canvas.height=Math.floor(h*dpr); ctx.setTransform(dpr,0,0,dpr,0,0); }
   resize(); window.addEventListener("resize", resize);
 
-  function accentHSLA(a){ var hh = getComputedStyle(root).getPropertyValue("--accent-h").trim() || "28"; return "hsla(" + hh + ", 95%, 56%, " + a + ")"; }
+  function accentHSLA(a, dh){ var hh = parseFloat(getComputedStyle(root).getPropertyValue("--accent-h")) || 28; return "hsla(" + (hh + (dh||0)) + ", 95%, 56%, " + a + ")"; }
+
+  // Exaggerated, harmonically-rich traces: each is a fundamental plus a long
+  // series of phased overtones (near-sawtooth) with two layers of "grit", so
+  // the line reads like a punchy, detailed audio scope. Secondary traces are
+  // pushed to distinct hue offsets for a clear chromatic split.
+  var traces = [
+    // deep back layer — widest hue offset, slow and faint
+    {amp:0.15, sp:0.42, a:0.08, hue:-36, lw:1, glow:0,
+     parts:[{f:1,a:1,ph:0.2},{f:2,a:0.5,ph:1.4},{f:3,a:0.3,ph:2.6},{f:4,a:0.2,ph:0.5},{f:6,a:0.1,ph:1.9},{f:9,a:0.05,ph:0.8}]},
+    // back layer — opposite hue push
+    {amp:0.11, sp:-0.72, a:0.13, hue:32, lw:1, glow:0,
+     parts:[{f:2,a:0.85,ph:0.4},{f:3,a:0.55,ph:1.7},{f:4,a:0.36,ph:0.2},{f:6,a:0.22,ph:2.0},{f:9,a:0.11,ph:0.9},{f:13,a:0.05,ph:1.5}]},
+    // mid detail — fast, jagged, high harmonics
+    {amp:0.09, sp:1.05, a:0.17, hue:-20, lw:1, glow:6,
+     parts:[{f:3,a:0.7,ph:0.4},{f:5,a:0.52,ph:1.7},{f:7,a:0.36,ph:0.2},{f:10,a:0.24,ph:2.0},{f:14,a:0.13,ph:0.9},{f:19,a:0.06,ph:1.5}]},
+    // hero trace — rich harmonic series, bold and glowing, pure accent
+    {amp:0.2, sp:0.4, a:0.64, hue:0, lw:2.4, glow:18,
+     parts:[{f:1,a:1,ph:0.0},{f:2,a:0.56,ph:0.9},{f:3,a:0.38,ph:1.8},{f:4,a:0.27,ph:0.5},{f:5,a:0.2,ph:2.2},{f:7,a:0.13,ph:1.2},{f:9,a:0.08,ph:0.3},{f:12,a:0.05,ph:2.6},{f:16,a:0.03,ph:1.0}]}
+  ];
+  traces.forEach(function(tr){ var s=0; tr.parts.forEach(function(p){ s+=Math.abs(p.a); }); tr.norm = s ? 1/s : 1; });
+
+  var TAU = Math.PI*2;
+  function signal(nx, t, tr){
+    var v = 0, ph = t*tr.sp;
+    for (var k=0; k<tr.parts.length; k++){
+      var p = tr.parts[k];
+      v += p.a * Math.sin(nx*TAU*p.f + ph*(1 + p.f*0.02) + p.ph);
+    }
+    v *= tr.norm;
+    // two layers of "grit" give the trace punchy, scope-like detail
+    v += 0.09 * Math.sin(nx*TAU*23 + t*2.6) * Math.sin(nx*TAU*4);
+    v += 0.05 * Math.sin(nx*TAU*37 + t*3.7);
+    return v;
+  }
+
   function wave(t){
     ctx.clearRect(0,0,w,h);
     var midY = h*0.5;
-    var traces = [
-      {amp:0.16, freq:1.3, sp:0.6, a:0.10, off:0},
-      {amp:0.10, freq:2.1, sp:-0.9, a:0.16, off:0.7},
-      {amp:0.22, freq:0.9, sp:0.4, a:0.55, off:0.3}
-    ];
     for (var ti=0; ti<traces.length; ti++){
       var tr = traces[ti];
+      var breathe = 0.7 + 0.3*Math.sin(t*0.6 + ti*1.5);   // deeper pumping
       ctx.beginPath();
-      for (var x=0; x<=w; x+=6){
+      for (var x=0; x<=w; x+=3){
         var nx = x/w;
-        var y = midY + Math.sin(nx*Math.PI*2*tr.freq + t*tr.sp + tr.off)*h*tr.amp*0.5
-                     + Math.sin(nx*Math.PI*2*(tr.freq*2.7) + t*tr.sp*1.7)*h*tr.amp*0.18;
-        var env = Math.sin(nx*Math.PI);
-        y = midY + (y-midY)*env;
+        var env = Math.sin(nx*Math.PI);           // taper toward both edges
+        var y = midY + signal(nx, t, tr) * h * tr.amp * breathe * env;
         if (x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
       }
-      ctx.lineWidth = ti===2 ? 2 : 1;
-      ctx.strokeStyle = accentHSLA(tr.a);
-      ctx.shadowColor = accentHSLA(0.6);
-      ctx.shadowBlur = ti===2 ? 12 : 0;
+      ctx.lineWidth = tr.lw;
+      ctx.lineJoin = "round"; ctx.lineCap = "round";
+      ctx.strokeStyle = accentHSLA(tr.a, tr.hue);
+      ctx.shadowColor = accentHSLA(0.6, tr.hue);
+      ctx.shadowBlur = tr.glow;
       ctx.stroke(); ctx.shadowBlur = 0;
     }
   }
