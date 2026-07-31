@@ -1337,5 +1337,53 @@
   else { var start = performance.now(); (function loop(now){ wave((now-start)/1000); requestAnimationFrame(loop); })(start); }
 })();
 </script>
+
+<!-- ============ hidden looper · knock: click the accent swatch ×8 ============ -->
+<style>
+  #egg{position:fixed;inset:0;z-index:9998;background:#04070d;opacity:0;pointer-events:none;transition:opacity .45s ease}
+  #egg.on{opacity:1;pointer-events:auto}
+  #egg iframe{width:100%;height:100%;border:0;display:block}
+  #egg-x{position:fixed;top:14px;right:16px;z-index:10000;width:34px;height:34px;border:1px solid rgba(255,255,255,.22);
+    background:rgba(0,0,0,.45);color:#dfeaf5;border-radius:8px;font:15px/1 system-ui;cursor:pointer;opacity:.45;transition:opacity .2s}
+  #egg-x:hover{opacity:1}
+</style>
+<div id="egg" hidden aria-hidden="true"></div>
+<button id="egg-x" type="button" hidden aria-label="Close looper">✕</button>
+<script>
+(function(){
+  var sw=document.querySelector('.accentbar .swatch') || document.querySelector('.swatch'),
+      egg=document.getElementById('egg'), xbtn=document.getElementById('egg-x');
+  var cnt=0, timer=0, shown=false, need=8;
+  var DBG=/knock/i.test(location.hash+location.search), box=null, lastHit='—';
+  function render(){ if(!box) return;
+    box.textContent='KNOCK DEBUG\nswatch target: '+(!!sw)+'\naccent-swatch clicks: '+cnt+' / '+need+'\nlast click: '+lastHit; }
+  if(DBG){ box=document.createElement('div');
+    box.style.cssText='position:fixed;left:10px;top:10px;z-index:100000;font:12px/1.5 ui-monospace,monospace;background:rgba(0,0,0,.82);color:#5ff;padding:8px 11px;border:1px solid rgba(0,255,255,.5);border-radius:6px;white-space:pre;pointer-events:none';
+    document.body.appendChild(box);
+    document.addEventListener('click',function(e){ var c=e.target.className; lastHit=e.target.tagName.toLowerCase()+(typeof c==='string'&&c?'.'+c.split(' ')[0]:''); render(); }, true);
+    render();
+  }
+  if(!sw) return;
+  function reveal(){
+    if(shown) return; shown=true; cnt=0; clearTimeout(timer); render();
+    var h=(getComputedStyle(document.documentElement).getPropertyValue('--accent-h')||'188').trim();
+    var f=document.createElement('iframe'); f.title='looper'; f.src='_egg/looper.html?hue='+encodeURIComponent(h);
+    egg.appendChild(f); egg.hidden=false; egg.setAttribute('aria-hidden','false'); xbtn.hidden=false;
+    requestAnimationFrame(function(){ egg.classList.add('on'); });
+  }
+  function hide(){
+    shown=false; cnt=0; egg.classList.remove('on'); egg.setAttribute('aria-hidden','true'); xbtn.hidden=true;
+    setTimeout(function(){ egg.hidden=true; egg.innerHTML=''; }, 450); render();
+  }
+  sw.addEventListener('click', function(){
+    if(shown) return;
+    cnt++; clearTimeout(timer); timer=setTimeout(function(){ cnt=0; render(); }, 2500);
+    render();
+    if(cnt>=need) reveal();
+  });
+  xbtn.addEventListener('click', hide);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && shown) hide(); });
+})();
+</script>
 </body>
 </html>
