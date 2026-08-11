@@ -168,6 +168,14 @@
   /* ============ Hero ============ */
   .hero{position:relative;padding:clamp(50px,10vh,110px) 0 clamp(44px,7vh,80px);overflow:hidden}
   #scope{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.9}
+  /* Film grain: genuine "boiling" grain. The inline SVG turbulence (markup at the
+     top of <body>) re-rolls its seed ~20x/sec, so every frame is a fresh noise
+     field — the analog film look — instead of one static texture sliding around.
+     It renders into a small 600x340 buffer stretched to fill, so the per-frame
+     filter stays cheap. Coarseness = the SVG's baseFrequency; strength = opacity. */
+  .grain{position:fixed;inset:0;z-index:9990;pointer-events:none;opacity:.16;mix-blend-mode:soft-light}
+  .grain svg{width:100%;height:100%;display:block}
+  @media (prefers-reduced-motion:reduce){.grain{display:none}}
   .hero-inner{position:relative;z-index:2;max-width:860px}
   .hero .wordmark-img{width:min(560px,86%);height:auto;margin:14px 0 4px;display:block;
     filter:drop-shadow(0 0 24px var(--accent-glow)) drop-shadow(0 6px 20px rgba(0,0,0,.5))}
@@ -379,6 +387,19 @@
 </style>
 </head>
 <body>
+<div class="grain" aria-hidden="true">
+  <svg xmlns="http://www.w3.org/2000/svg" width="600" height="340" preserveAspectRatio="none">
+    <filter id="grainf" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.12" numOctaves="2" stitchTiles="stitch" seed="0">
+        <animate attributeName="seed" dur="0.5s" calcMode="discrete" repeatCount="indefinite"
+          values="0;5;11;17;23;29;35;41;47;53;59;65;71;77;83;89"/>
+      </feTurbulence>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="table" tableValues="1 1"/></feComponentTransfer>
+    </filter>
+    <rect width="100%" height="100%" filter="url(#grainf)"/>
+  </svg>
+</div>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
   <linearGradient id="chromeGrad" x1="0" y1="0" x2="0" y2="1">
@@ -1296,9 +1317,23 @@
     {amp:0.2, sp:0.4, a:0.64, hue:0, lw:2.4, glow:18,
      parts:[{f:1,a:1,ph:0.0},{f:2,a:0.56,ph:0.9},{f:3,a:0.38,ph:1.8},{f:4,a:0.27,ph:0.5},{f:5,a:0.2,ph:2.2},{f:7,a:0.13,ph:1.2},{f:9,a:0.08,ph:0.3},{f:12,a:0.05,ph:2.6},{f:16,a:0.03,ph:1.0}]}
   ];
-  traces.forEach(function(tr){ var s=0; tr.parts.forEach(function(p){ s+=Math.abs(p.a); }); tr.norm = s ? 1/s : 1; });
+  // quadruple the overtone count — extend each trace with higher harmonics (1/f falloff)
+  traces.forEach(function(tr){
+    var base = tr.parts.length, lastF = tr.parts[base-1].f;
+    for (var i=1; i<=base*3; i++){ var f = lastF + i*2; tr.parts.push({f:f, a:0.85/f, ph:(i*1.37)%6.2832}); }
+  });
+  // Spectral tilt: flatten the amplitude-vs-frequency curve. Scaling each partial
+  // by f^TILT lifts the weak high overtones and (after the normalization below)
+  // pulls down the over-dominant low fundamental. Higher TILT = flatter/brighter.
+  var TILT = 0.4;
+  traces.forEach(function(tr){ tr.parts.forEach(function(p){ p.a *= Math.pow(p.f, TILT); }); });
+  traces.forEach(function(tr,ti){ var s=0; tr.parts.forEach(function(p){ s+=Math.abs(p.a); }); tr.norm = s ? 1/s : 1; tr.seed = ti*137.13; });
 
   var TAU = Math.PI*2;
+  // Analog noise floor for the traces: a hashed value that re-rolls ~24x/sec
+  // (filmic), independent per trace via tr.seed. NOISE = how hard it hisses.
+  var NOISE = 0.05;
+  function hashNoise(seed){ var s = Math.sin(seed) * 43758.5453; return (s - Math.floor(s)) * 2 - 1; }
   function signal(nx, t, tr){
     var v = 0, ph = t*tr.sp;
     for (var k=0; k<tr.parts.length; k++){
@@ -1309,6 +1344,8 @@
     // two layers of "grit" give the trace punchy, scope-like detail
     v += 0.09 * Math.sin(nx*TAU*23 + t*2.6) * Math.sin(nx*TAU*4);
     v += 0.05 * Math.sin(nx*TAU*37 + t*3.7);
+    // hashed noise floor — scaled later by amp/env so it tapers with the trace
+    v += NOISE * hashNoise(nx*911.7 + tr.seed + Math.floor(t*6)*57.1);
     return v;
   }
 
@@ -1334,7 +1371,7 @@
     }
   }
   if (reduce){ wave(0.6); }
-  else { var start = performance.now(); (function loop(now){ wave((now-start)/1000); requestAnimationFrame(loop); })(start); }
+  else { var start = performance.now(); (function loop(now){ wave((now-start)/1000*4); requestAnimationFrame(loop); })(start); }
 })();
 </script>
 
