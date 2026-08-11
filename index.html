@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>WiseLabs — Sound Design, DAW Content & Bass Music</title>
+<title>WiseLabs • Sound Design, DAW Content & Bass Music</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="WiseLabs — complex sound design, surgical microediting, and audio experiments. DAW content: Patcher instruments & effects, sample packs, and a deep catalog of original music." />
+<meta name="description" content="WiseLabs • complex sound design, surgical microediting, and earmind experiments. DAW content: Patcher instruments & effects, sample packs, and a deep catalog of original music." />
 <meta name="theme-color" content="#060608" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://wiselabsmusic.com/" />
-<meta property="og:title" content="WiseLabs — Sound Design & DAW Content" />
-<meta property="og:description" content="Patcher generators & effects, sample packs, and original bass music." />
+<meta property="og:title" content="WiseLabs • Sound Design & DAW Content" />
+<meta property="og:description" content="Patcher synths & effects, sample packs, and original bass music." />
 <meta property="og:site_name" content="WiseLabs" />
 <meta property="og:image" content="https://wiselabsmusic.com/assets/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="WiseLabs — Sound Design, DAW Content & Bass Music" />
+<meta property="og:image:alt" content="WiseLabs • Sound Design, DAW Content & Bass Music" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://wiselabsmusic.com/assets/og-image.png" />
 <link rel="icon" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="%23060608"/><g transform="translate(9 26) scale(0.169)"><path fill="%23cfd4dd" d="M1,28.79V2.9h7.06v18.83h7.06V2.9h7.06v18.83h7.06V2.9h7.06v25.89H1z M38.65,28.79V2.9h7.06v25.89H38.65z M48.07,28.79v-7.06h28.24v-2.35H48.07V2.9h35.3v7.06H55.13v2.35h28.24v16.47H48.07z M85.72,28.79V2.9h35.3v16.47H92.78v2.35h28.24v7.06H85.72z M113.96,12.32V9.96H92.78v2.35H113.96z M123.38,28.79V2.9h7.06v18.83h28.24v7.06H123.38z M161.03,28.79V12.32h28.24V9.96h-28.24V2.9h35.3v25.89H161.03z M189.27,21.73v-2.35h-21.18v2.35H189.27z M198.68,28.79V2.9h7.06v9.41h28.24v16.47H198.68z M226.92,21.73v-2.35h-21.18v2.35H226.92z M236.34,28.79v-7.06h28.24v-2.35h-28.24V2.9h35.3v7.06H243.4v2.35h28.24v16.47H236.34z"/></g></svg>' />
@@ -84,7 +84,7 @@
   a{color:inherit;text-decoration:none}
   ::selection{background:var(--accent);color:var(--accent-ink)}
   :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-  /* horizontal only — must not zero out the vertical padding that `section` sets */
+  /* horizontal only • must not zero out the vertical padding that `section` sets */
   .wrap{max-width:var(--maxw);margin:0 auto;padding-left:24px;padding-right:24px}
 
   .chrome{
@@ -95,9 +95,11 @@
     font-family:var(--mono);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
     color:var(--accent);display:inline-flex;align-items:center;gap:.55em;
   }
-  .kicker::before{content:"";width:22px;height:1px;background:var(--accent);opacity:.85}
+  .kicker::before{content:"•";opacity:.85;line-height:1;font-weight:700}
   .kicker.dim{color:var(--dim)}
-  .kicker.dim::before{background:var(--dim)}
+  .kicker.dim::before{color:var(--dim)}
+  .kicker.stacked{flex-wrap:wrap;row-gap:.15em}      /* allow a 2nd line */
+  .kicker.stacked .ks-line{flex-basis:100%}          /* full row = forced line break (a <br> can't, inside flex) */
 
   /* ============ Accent control (top strip) ============ */
   .accentbar{background:var(--void-2);border-bottom:1px solid var(--line)}
@@ -170,7 +172,7 @@
   #scope{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.9}
   /* Film grain: genuine "boiling" grain. The inline SVG turbulence (markup at the
      top of <body>) re-rolls its seed ~20x/sec, so every frame is a fresh noise
-     field — the analog film look — instead of one static texture sliding around.
+     field • the analog film look • instead of one static texture sliding around.
      It renders into a small 600x340 buffer stretched to fill, so the per-frame
      filter stays cheap. Coarseness = the SVG's baseFrequency; strength = opacity. */
   .grain{position:fixed;inset:0;z-index:9990;pointer-events:none;opacity:.16;mix-blend-mode:soft-light}
@@ -190,7 +192,7 @@
   .stat .n{font-size:1.7rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
   .stat .l{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:8px}
 
-  /* R&D teaser — classified plugin suite */
+  /* R&D teaser • classified plugin suite */
   .rnd{display:inline-flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:20px;padding:9px 15px;
     border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.015);
     font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
@@ -391,7 +393,7 @@
   <svg xmlns="http://www.w3.org/2000/svg" width="600" height="340" preserveAspectRatio="none">
     <filter id="grainf" x="0" y="0" width="100%" height="100%">
       <feTurbulence type="fractalNoise" baseFrequency="0.12" numOctaves="2" stitchTiles="stitch" seed="0">
-        <animate attributeName="seed" dur="0.5s" calcMode="discrete" repeatCount="indefinite"
+        <animate attributeName="seed" dur="0.7s" calcMode="discrete" repeatCount="indefinite"
           values="0;5;11;17;23;29;35;41;47;53;59;65;71;77;83;89"/>
       </feTurbulence>
       <feColorMatrix type="saturate" values="0"/>
@@ -411,7 +413,7 @@
 <div class="topstack">
 <header class="site-header">
   <div class="wrap nav">
-    <a class="brand" href="#top" aria-label="WiseLabs — home">
+    <a class="brand" href="#top" aria-label="WiseLabs • home">
       <span class="dot" aria-hidden="true"></span>
       <svg class="logo" viewBox="0 0 272.99 31.79" role="img" aria-label="WiseLabs">
         <path d="M1,28.79V2.9h7.06v18.83h7.06V2.9h7.06v18.83h7.06V2.9h7.06v25.89H1z M38.65,28.79V2.9h7.06v25.89H38.65z M48.07,28.79v-7.06h28.24v-2.35H48.07V2.9h35.3v7.06H55.13v2.35h28.24v16.47H48.07z M85.72,28.79V2.9h35.3v16.47H92.78v2.35h28.24v7.06H85.72z M113.96,12.32V9.96H92.78v2.35H113.96z M123.38,28.79V2.9h7.06v18.83h28.24v7.06H123.38z M161.03,28.79V12.32h28.24V9.96h-28.24V2.9h35.3v25.89H161.03z M189.27,21.73v-2.35h-21.18v2.35H189.27z M198.68,28.79V2.9h7.06v9.41h28.24v16.47H198.68z M226.92,21.73v-2.35h-21.18v2.35H226.92z M236.34,28.79v-7.06h28.24v-2.35h-28.24V2.9h35.3v7.06H243.4v2.35h28.24v16.47H236.34z"/>
@@ -457,11 +459,11 @@
   <section class="hero" aria-labelledby="hero-h1">
     <canvas id="scope" aria-hidden="true"></canvas>
     <div class="wrap hero-inner">
-      <span class="kicker">Sound Design · Audio Plugins · DAW Content · Bass Music · Music</span>
+      <span class="kicker">Sound Design <b>•</b> Audio Plugins <b>•</b> DAW Content <b>•</b> Bass Music <b>•</b> Music</span>
       <h1 id="hero-h1">WiseLabs</h1>
       <img class="wordmark-img" src="assets/wordmark-glow.png" width="1000" height="175" alt="" aria-hidden="true" fetchpriority="high" />
-      <p class="tagline">Complex sound design, surgical microediting, and experiments on <b>earminds</b>.</p>
-      <p class="lead">Everything and anything about audio and music production — instruments, effects, sample packs, and a deep catalog of original music.</p>
+      <p class="tagline">Complex sound design, surgical microediting, and <b>earmind</b> experiments.</p>
+      <p class="lead">Welcome to WiseLabs, here you'll find everything and anything about audio and music production, instruments, effects, sample packs, sound design techniques, sample production tips, and a deep catalog of original music.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="https://www.youtube.com/@wiselabsmusic" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.4-.43-5.03a2.62 2.62 0 0 0-1.84-1.85C19.09 4.7 12 4.7 12 4.7s-7.09 0-8.73.42a2.62 2.62 0 0 0-1.84 1.85C1 8.6 1 12 1 12s0 3.4.43 5.03c.24.9.94 1.6 1.84 1.85 1.64.42 8.73.42 8.73.42s7.09 0 8.73-.42a2.62 2.62 0 0 0 1.84-1.85C23 15.4 23 12 23 12zM9.75 15.5v-7l6 3.5-6 3.5z"/></svg>
@@ -475,7 +477,7 @@
 
       <div class="stat-row" role="list">
         <div class="stat" role="listitem"><div class="n" id="yrs-stat">28</div><div class="l">Years Producing</div></div>
-        <div class="stat" role="listitem"><div class="n">32</div><div class="l">Patcher Generators</div></div>
+        <div class="stat" role="listitem"><div class="n">32</div><div class="l">Patcher Synths</div></div>
         <div class="stat" role="listitem"><div class="n">65</div><div class="l">Patcher Effects</div></div>
         <div class="stat" role="listitem"><div class="n">3,083</div><div class="l">Presets Designed</div></div>
         <div class="stat" role="listitem"><div class="n">64,339</div><div class="l">Samples Produced</div></div>
@@ -484,10 +486,10 @@
       <div class="rnd" role="note" aria-label="Unnamed plugin suite: an undisclosed number of audio plugins in development. Classified.">
         <span class="rnd-dot" aria-hidden="true"></span>
         <span>[ unnamed plugin suite ]</span>
-        <span class="rnd-sep" aria-hidden="true">·</span>
+        <span class="rnd-sep" aria-hidden="true"><b>•</b></span>
         <span class="rnd-redact" aria-hidden="true"></span>
         <span>audio plugins in development</span>
-        <span class="rnd-sep" aria-hidden="true">·</span>
+        <span class="rnd-sep" aria-hidden="true"><b>•</b></span>
         <span class="rnd-tag">[ classified ]</span>
       </div>
     </div>
@@ -497,7 +499,7 @@
   <section id="music" class="wrap">
     <div class="music-panel reveal">
       <div>
-        <span class="kicker">Music · 1998 → now</span>
+        <span class="kicker stacked">Music<b>•</b><span class="ks-line">1998 → now</span></span>
         <h2 class="chrome">Experience and experiments.</h2>
         <p>Original music, bass music, remixes, and sound-design projects and experiments.</p>
         <div class="music-cta">
@@ -522,17 +524,17 @@
   <section id="content" class="wrap">
     <div class="sec-head reveal">
       <div>
-        <span class="kicker">You may already have some of them — no third-party plugins</span>
+        <span class="kicker stacked">You may already have some of them <b>•</b><span class="ks-line">no third-party plugins</span></span>
         <h2>DAW Content</h2>
-        <p>Patcher Instruments, Effects and Sample content made entirely with native plugins. Most of these presets come bundled with FL Studio — check your Patcher preset list.</p>
+        <p>Patcher Instruments and Effects, content made entirely with native plugins. Most of these presets come bundled with FL Studio, check your Patcher preset list.</p>
       </div>
-      <span class="sec-index">CAT · 01</span>
+      <span class="sec-index">CAT <b>•</b> 01</span>
     </div>
 
     <div class="cat-grid">
       <a class="cat reveal" href="#generators">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="17" r="3"/><path d="M7 10v4a3 3 0 0 0 3 3h4"/></svg>
-        <h3>Patcher Generators</h3>
+        <h3>Patcher Synths</h3>
         <p>Seeded synths, drum machines and MIDI tools wired inside Patcher.</p>
         <span class="count">32 generators →</span>
       </a>
@@ -545,19 +547,19 @@
       <a class="cat reveal" href="#flex">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 9v12"/></svg>
         <h3>FLEX Packs</h3>
-        <p>Four hybrid libraries exploiting the full FLEX engine — modular, wavetable, FM, multi-sample and foley.</p>
+        <p>Four hybrid libraries exploiting the full FLEX engine, modular, wavetable, FM, multi-sample and foley.</p>
         <span class="count">825 presets →</span>
       </a>
       <div class="cat reveal">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 14c3-6 5-9 8-9s5 3 8 9"/><path d="M2 18h20"/></svg>
         <h3>Harmor Packs</h3>
-        <p>WiseLabs Bass Music — raw sub bass, screaming leads and throbbing wobbles, plus 3 demo projects.</p>
+        <p>WiseLabs Bass Music, raw sub bass, screaming leads and throbbing wobbles, plus 3 demo projects.</p>
         <span class="count">150 presets</span>
       </div>
       <a class="cat reveal" href="#samples">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 18V5l10-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="19" cy="16" r="3"/></svg>
         <h3>Sample &amp; Loop Packs</h3>
-        <p>Hand-played guitar loops, sliced beats and synth sequences — plus glitch loops cut from foley recordings.</p>
+        <p>Hand-played guitar loops, sliced beats and synth sequences, plus glitch loops cut from foley recordings.</p>
         <span class="count">1,870+ loops →</span>
       </a>
       <div class="cat reveal">
@@ -574,63 +576,63 @@
   <section id="flex" class="wrap">
     <div class="sec-head reveal">
       <div>
-        <span class="kicker">Hybrid synthesis · sample · foley — the whole FLEX engine power</span>
+        <span class="kicker stacked">Hybrid synthesis <b>•</b> sample <b>•</b> foley <b>•</b><span class="ks-line">unleash the whole FLEX engine power</span></span>
         <h2>FLEX Packs</h2>
-        <p>Four libraries totalling <b style="color:var(--ink)">825 presets</b>. Not sample players — each one pushes a different corner of the FLEX engine: modular circuitry, wavetable, frequency modulation, layered multi-samples and foley.</p>
+        <p>Four libraries totalling <b style="color:var(--ink)">825 presets</b>. Not sample players, each one pushes a different corner of the FLEX engine: modular circuitry, wavetable, frequency modulation, layered multi-samples and foley.</p>
       </div>
-      <span class="sec-index">FLX · 02</span>
+      <span class="sec-index">FLX <b>•</b> 02</span>
     </div>
 
     <div class="pack-grid">
       <article class="pack reveal">
-        <a class="pack-cover" href="https://www.image-line.com/fl-studio/samples-loops-presets/analog-excellence" target="_blank" rel="noopener" aria-label="Analog Excellence — more infos">
+        <a class="pack-cover" href="https://www.image-line.com/fl-studio/samples-loops-presets/analog-excellence" target="_blank" rel="noopener" aria-label="Analog Excellence • more infos">
           <img src="assets/flex/analog-excellence.webp" alt="Analog Excellence pack artwork" loading="lazy" decoding="async" width="520" height="520">
         </a>
         <div class="pack-body">
-          <div class="top"><span class="desig">FLX·01 — Modular</span><span class="tag-type">160 presets · 141 MB</span></div>
+          <div class="top"><span class="desig">FLX·01 <b>•</b> Modular</span><span class="tag-type">160 presets <b>•</b> 141 MB</span></div>
           <h3>Analog Excellence</h3>
-          <p class="desc">Fresh from the modular research facility — the raw energy of electrons flying through transistors and circuitry, built by custom patching of modular synth and effect components. Every preset holds unique audio.</p>
+          <p class="desc">Fresh from the modular research facility, the raw energy of electrons flying through transistors and circuitry, built by custom patching of modular synth and effect components. Every preset holds unique audio.</p>
           <div class="chips"><span class="chip">Modular</span><span class="chip">Leads</span><span class="chip">Bass</span><span class="chip">Pads</span><span class="chip">Keys</span><a class="chip chip-link" href="https://www.youtube.com/watch?v=UhALB3J5XWE" target="_blank" rel="noopener">▶ Video</a></div>
-          <div class="act"><span class="fmt">FLEX · FL 20.8+</span><a class="more" href="https://www.image-line.com/fl-studio/samples-loops-presets/analog-excellence" target="_blank" rel="noopener">More infos… →</a></div>
+          <div class="act"><span class="fmt">FLEX <b>•</b> FL 20.8+</span><a class="more" href="https://www.image-line.com/fl-studio/samples-loops-presets/analog-excellence" target="_blank" rel="noopener">More infos… →</a></div>
         </div>
       </article>
 
       <article class="pack reveal">
-        <a class="pack-cover" href="https://www.image-line.com/fl-studio/samples-loops-presets/phonon-collider" target="_blank" rel="noopener" aria-label="Phonon Collider — more infos">
+        <a class="pack-cover" href="https://www.image-line.com/fl-studio/samples-loops-presets/phonon-collider" target="_blank" rel="noopener" aria-label="Phonon Collider • more infos">
           <img src="assets/flex/phonon-collider.webp" alt="Phonon Collider pack artwork" loading="lazy" decoding="async" width="520" height="520">
         </a>
         <div class="pack-body">
-          <div class="top"><span class="desig">FLX·02 — Quantum</span><span class="tag-type">320 presets · 28 MB</span></div>
+          <div class="top"><span class="desig">FLX·02 <b>•</b> Quantum</span><span class="tag-type">320 presets <b>•</b> 28 MB</span></div>
           <h3>Phonon Collider</h3>
-          <p class="desc">FLEX engine particles of inspiration accelerated into a quantum world of sound — a big-bang of presets travelling from galaxies down to subatomic phonons, mapped to audio-molecular generators.</p>
+          <p class="desc">FLEX engine particles of inspiration accelerated into a quantum world of sound, a big-bang of presets travelling from galaxies down to subatomic phonons, mapped to audio-molecular generators.</p>
           <div class="chips"><span class="chip">Generators</span><span class="chip">Quantum</span><span class="chip">Sound design</span><a class="chip chip-link" href="https://www.youtube.com/watch?v=ynSdwIg7vgM" target="_blank" rel="noopener">▶ Video</a></div>
-          <div class="act"><span class="fmt">FLEX · FL 20.6+</span><a class="more" href="https://www.image-line.com/fl-studio/samples-loops-presets/phonon-collider" target="_blank" rel="noopener">More infos… →</a></div>
+          <div class="act"><span class="fmt">FLEX <b>•</b> FL 20.6+</span><a class="more" href="https://www.image-line.com/fl-studio/samples-loops-presets/phonon-collider" target="_blank" rel="noopener">More infos… →</a></div>
         </div>
       </article>
 
       <article class="pack reveal">
-        <a class="pack-cover" href="https://www.image-line.com/fl-studio/samples-loops-presets/synthesizer-science/" target="_blank" rel="noopener" aria-label="Synthesizer Science — more infos">
+        <a class="pack-cover" href="https://www.image-line.com/fl-studio/samples-loops-presets/synthesizer-science/" target="_blank" rel="noopener" aria-label="Synthesizer Science • more infos">
           <img src="assets/flex/synthesizer-science.webp" alt="Synthesizer Science pack artwork" loading="lazy" decoding="async" width="520" height="520">
         </a>
         <div class="pack-body">
-          <div class="top"><span class="desig">FLX·03 — Full Spectrum</span><span class="tag-type">320 presets · 310 MB</span></div>
+          <div class="top"><span class="desig">FLX·03 <b>•</b> Full Spectrum</span><span class="tag-type">320 presets <b>•</b> 310 MB</span></div>
           <h3>Synthesizer Science</h3>
-          <p class="desc">A vast universe of electronic sound liberating every sound-generation capability of FLEX — wavetable synthesis, frequency modulation and layered multi-samples. From production-ready creations to essential tools for each synthesis type.</p>
+          <p class="desc">A vast universe of electronic sound liberating every sound-generation capability of FLEX, wavetable synthesis, frequency modulation and layered multi-samples. From production-ready creations to essential tools for each synthesis type.</p>
           <div class="chips"><span class="chip">Wavetable</span><span class="chip">FM</span><span class="chip">Multi-sample</span><span class="chip">Leads</span><span class="chip">Bass</span><a class="chip chip-link" href="https://www.youtube.com/watch?v=tcpUwysMBOA" target="_blank" rel="noopener">▶ Video</a></div>
-          <div class="act"><span class="fmt">FLEX · FL 20.5+</span><a class="more" href="https://www.image-line.com/fl-studio/samples-loops-presets/synthesizer-science/" target="_blank" rel="noopener">More infos… →</a></div>
+          <div class="act"><span class="fmt">FLEX <b>•</b> FL 20.5+</span><a class="more" href="https://www.image-line.com/fl-studio/samples-loops-presets/synthesizer-science/" target="_blank" rel="noopener">More infos… →</a></div>
         </div>
       </article>
 
       <article class="pack reveal">
-        <a class="pack-cover" href="https://www.image-line.com/fl-studio-news/flex-drumful-treasure-free/" target="_blank" rel="noopener" aria-label="Drumful Treasure — more infos">
+        <a class="pack-cover" href="https://www.image-line.com/fl-studio-news/flex-drumful-treasure-free/" target="_blank" rel="noopener" aria-label="Drumful Treasure • more infos">
           <img src="assets/flex/drumful-treasure.webp" alt="Drumful Treasure pack artwork" loading="lazy" decoding="async" width="520" height="520">
         </a>
         <div class="pack-body">
-          <div class="top"><span class="desig">FLX·04 — Drums</span><span class="tag-type">25 presets · 75 MB</span></div>
+          <div class="top"><span class="desig">FLX·04 <b>•</b> Drums</span><span class="tag-type">25 presets <b>•</b> 75 MB</span></div>
           <h3>Drumful Treasure</h3>
-          <p class="desc">A drum library of 2,400 samples — 600 kicks, 600 snares, 240 claps, 360 percussion, 360 hats, 120 cymbals and 120 toms — generated with custom Patcher recipes. Ships with the Multi-Out Drumkit Manager for live sample-swapping and index automation.</p>
+          <p class="desc">A drum library of 2,400 samples, 600 kicks, 600 snares, 240 claps, 360 percussion, 360 hats, 120 cymbals and 120 toms, generated with custom Patcher recipes. Ships with the Multi-Out Drumkit Manager for live sample-swapping and index automation.</p>
           <div class="chips"><span class="chip">2,400 samples</span><span class="chip">Multi-out</span><span class="chip">Automation</span><a class="chip chip-link" href="https://www.youtube.com/watch?v=e-RH_zE07ho" target="_blank" rel="noopener">▶ Video</a></div>
-          <div class="act"><span class="fmt">FLEX · FL 20.8+</span><a class="more" href="https://www.image-line.com/fl-studio-news/flex-drumful-treasure-free/" target="_blank" rel="noopener">More infos… →</a></div>
+          <div class="act"><span class="fmt">FLEX <b>•</b> FL 20.8+</span><a class="more" href="https://www.image-line.com/fl-studio-news/flex-drumful-treasure-free/" target="_blank" rel="noopener">More infos… →</a></div>
           <div class="act"><span class="fmt">Bonus</span><a class="more" href="https://forum.image-line.com/viewtopic.php?p=1669382#p1669382" target="_blank" rel="noopener">Download the Multi-Out Drumkit Manager →</a></div>
         </div>
       </article>
@@ -641,23 +643,23 @@
   <section id="samples" class="wrap">
     <div class="sec-head reveal">
       <div>
-        <span class="kicker">Played, sliced, processed — 1,870+ loops</span>
+        <span class="kicker stacked">Played, sliced, processed <b>•</b><span class="ks-line">1,870+ loops</span></span>
         <h2>Sample &amp; Loop Packs</h2>
-        <p>Guitar played by hand, drums built from native devices, and glitch loops cut from foley recordings — all sliced and ready to drop in.</p>
+        <p>Guitar played by hand, drums built from native devices, and glitch loops cut from foley recordings, all sliced and ready to drop in.</p>
       </div>
-      <span class="sec-index">SMP · 03</span>
+      <span class="sec-index">SMP <b>•</b> 03</span>
     </div>
 
     <div class="pack-grid">
       <article class="pack reveal">
-        <a class="pack-cover" href="https://www.image-line.com/fl-studio-news/wiselabs-guitar-loops-directwave-presets" target="_blank" rel="noopener" aria-label="WiseLabs Guitar Loops — more infos">
+        <a class="pack-cover" href="https://www.image-line.com/fl-studio-news/wiselabs-guitar-loops-directwave-presets" target="_blank" rel="noopener" aria-label="WiseLabs Guitar Loops • more infos">
           <img src="assets/flex/wiselabs-guitar-loops.webp" alt="WiseLabs Guitar Loops pack artwork" loading="lazy" decoding="async" width="520" height="520">
         </a>
         <div class="pack-body">
-          <div class="top"><span class="desig">SMP·01 — Guitar</span><span class="tag-type">870+ loops</span></div>
+          <div class="top"><span class="desig">SMP·01 <b>•</b> Guitar</span><span class="tag-type">870+ loops</span></div>
           <h3>WiseLabs Guitar Loops</h3>
-          <p class="desc">Clean-DI guitar loops played by hand in C minor, 100–190 BPM, with 6 DirectWave presets and their samples. Built for dubstep, drum &amp; bass, rock and blues.</p>
-          <div class="chips"><span class="chip">Clean DI</span><span class="chip">C minor</span><span class="chip">100–190 BPM</span><span class="chip">DirectWave ×6</span></div>
+          <p class="desc">Clean-DI guitar loops played by hand in C minor, 100-190 BPM, with 6 DirectWave presets and their samples. Built for dubstep, drum &amp; bass, rock and blues, or anything you like.</p>
+          <div class="chips"><span class="chip">Clean DI</span><span class="chip">C minor</span><span class="chip">100-190 BPM</span><span class="chip">DirectWave ×6</span></div>
           <div class="act"><span class="fmt">Sample pack</span><a class="more" href="https://www.image-line.com/fl-studio-news/wiselabs-guitar-loops-directwave-presets" target="_blank" rel="noopener">More infos… →</a></div>
         </div>
       </article>
@@ -667,9 +669,9 @@
           <img src="assets/flex/synthetix-beats.webp" alt="Synthetix Beats pack artwork" loading="lazy" decoding="async" width="520" height="520">
         </span>
         <div class="pack-body">
-          <div class="top"><span class="desig">SMP·02 — Beats</span><span class="tag-type">500 loops · 309 MB</span></div>
+          <div class="top"><span class="desig">SMP·02 <b>•</b> Beats</span><span class="tag-type">500 loops <b>•</b> 309 MB</span></div>
           <h3>Synthetix Beats</h3>
-          <p class="desc">Sliced beat loops generated from Drumpad and BassDrum — realistic evolving hi-hats, four-floor kits and heavily processed fills, alongside industrial glitch loops produced from foley recordings.</p>
+          <p class="desc">Sliced beat loops generated from Drumpad and BassDrum, realistic evolving hi-hats, four-floor kits and heavily processed fills, alongside industrial glitch loops produced from foley recordings.</p>
           <div class="chips"><span class="chip">Hi-Hats 130</span><span class="chip">Glitch 90</span><span class="chip">Drum Beats 80</span><span class="chip">House Top 80</span><span class="chip">Noisy 60</span><span class="chip">Percunoise 40</span><span class="chip">Floor 20</span></div>
           <div class="act"><span class="fmt">FL Mobile</span><span class="dl-soon">In the FL Mobile shop</span></div>
         </div>
@@ -680,9 +682,9 @@
           <img src="assets/flex/sliced-synth-sequences.webp" alt="Sliced Synth Sequences pack artwork" loading="lazy" decoding="async" width="520" height="520">
         </span>
         <div class="pack-body">
-          <div class="top"><span class="desig">SMP·03 — Sequences</span><span class="tag-type">500 loops · 337 MB</span></div>
+          <div class="top"><span class="desig">SMP·03 <b>•</b> Sequences</span><span class="tag-type">500 loops <b>•</b> 337 MB</span></div>
           <h3>Sliced Synth Sequences</h3>
-          <p class="desc">Sliced synthesizer sequences — full-spectrum additive loops, analog/digital synth combinations, plucked arps, incisive tonal sequences and rhythmic processed guitar landscapes.</p>
+          <p class="desc">Sliced synthesizer sequences, full-spectrum additive loops, analog/digital synth combinations, plucked arps, incisive tonal sequences and rhythmic processed guitar landscapes.</p>
           <div class="chips"><span class="chip">Space Guitar 180</span><span class="chip">Analog Synth 100</span><span class="chip">Tonal Seq 100</span><span class="chip">Additive 60</span><span class="chip">Arp 60</span></div>
           <div class="act"><span class="fmt">FL Mobile</span><span class="dl-soon">In the FL Mobile shop</span></div>
         </div>
@@ -690,15 +692,15 @@
     </div>
   </section>
 
-  <!-- ===================== PATCHER GENERATORS ===================== -->
+  <!-- ===================== PATCHER SYNTHS ===================== -->
   <section id="generators" class="wrap">
     <div class="sec-head reveal">
       <div>
-        <span class="kicker">The Bench — Generators &amp; Synths</span>
-        <h2>Patcher Generators</h2>
+        <span class="kicker stacked">The Bench <b>•</b><span class="ks-line">Generators &amp; Synths</span></span>
+        <h2>Patcher Synths</h2>
         <p>Thirty-two instruments and tools that turn stock devices into seeded machines. Load a unit, roll a seed, keep what you like.</p>
       </div>
-      <span class="sec-index">GEN · 04</span>
+      <span class="sec-index">GEN <b>•</b> 04</span>
     </div>
 
     <div class="legend reveal">
@@ -711,9 +713,9 @@
       <article class="rack reveal">
         <div class="rack-head">
           <div>
-            <span class="desig">GEN·01 — Series</span>
+            <span class="desig">GEN·01 <b>•</b> Series</span>
             <h3>MegaDrum Series</h3>
-            <p class="desc">Seven seeded drum generators — roll a seed, keep what you like.</p>
+            <p class="desc">Seven seeded drum generators, roll a seed, keep what you like.</p>
           </div>
           <span class="tag-type">7</span>
         </div>
@@ -731,7 +733,7 @@
       <article class="rack reveal">
         <div class="rack-head">
           <div>
-            <span class="desig">GEN·02 — Beat Machines</span>
+            <span class="desig">GEN·02 <b>•</b> Beat Machines</span>
             <h3>Beat Machines</h3>
             <p class="desc">Automatic and probability-based beat generators, plus quick drum RAM modules.</p>
           </div>
@@ -750,7 +752,7 @@
       <article class="rack reveal">
         <div class="rack-head">
           <div>
-            <span class="desig">GEN·03 — Drum Tools</span>
+            <span class="desig">GEN·03 <b>•</b> Drum Tools</span>
             <h3>Drum Tools</h3>
             <p class="desc">Multi-out kit management and tonal bass-drum design.</p>
           </div>
@@ -765,7 +767,7 @@
       <article class="rack reveal">
         <div class="rack-head">
           <div>
-            <span class="desig">GEN·04 — Transitions</span>
+            <span class="desig">GEN·04 <b>•</b> Transitions</span>
             <h3>Risers &amp; Impacts</h3>
             <p class="desc">Pseudo-random risers and downsweeps for transitions.</p>
           </div>
@@ -780,7 +782,7 @@
       <article class="rack reveal">
         <div class="rack-head">
           <div>
-            <span class="desig">GEN·05 — Synths</span>
+            <span class="desig">GEN·05 <b>•</b> Synths</span>
             <h3>Synths &amp; Randomizers</h3>
             <p class="desc">Seeded preset randomizers, AM synthesis and melodic LFO scapes.</p>
           </div>
@@ -798,7 +800,7 @@
       <article class="rack reveal">
         <div class="rack-head">
           <div>
-            <span class="desig">GEN·06 — Voices</span>
+            <span class="desig">GEN·06 <b>•</b> Voices</span>
             <h3>Leads, Bass &amp; Pads</h3>
             <p class="desc">Reeses, wobbles, vocal-style leads, 4× Harmor layers and evolving pads.</p>
           </div>
@@ -816,7 +818,7 @@
       <article class="rack reveal">
         <div class="rack-head">
           <div>
-            <span class="desig">GEN·07 — MIDI</span>
+            <span class="desig">GEN·07 <b>•</b> MIDI</span>
             <h3>Chords &amp; MIDI Tools</h3>
             <p class="desc">Chord progression building, key-scaling and split-keyboard workflow.</p>
           </div>
@@ -838,11 +840,11 @@
   <section id="effects" class="wrap">
     <div class="sec-head reveal">
       <div>
-        <span class="kicker">The Rack — Audio &amp; MIDI Effects</span>
+        <span class="kicker stacked">The Rack <b>•</b><span class="ks-line">Audio &amp; MIDI Effects</span></span>
         <h2>Patcher Effects</h2>
-        <p>Sixty-five effects built inside Patcher — from single-knob essentials to multiband dynamics, spatial imaging, amps and MIDI-driven processors.</p>
+        <p>Sixty-five effects built inside Patcher, from single-knob essentials to multiband dynamics, spatial imaging, amps and MIDI-driven processors.</p>
       </div>
-      <span class="sec-index">FX · 05</span>
+      <span class="sec-index">FX <b>•</b> 05</span>
     </div>
 
     <div class="legend reveal">
@@ -855,9 +857,9 @@
       <article class="rack reveal">
         <div class="rack-head">
           <div>
-            <span class="desig">FX·01 — Series</span>
+            <span class="desig">FX·01 <b>•</b> Series</span>
             <h3>1K Series</h3>
-            <p class="desc">One knob, one job — twenty-two essentials reduced to a single macro.</p>
+            <p class="desc">One knob, one job, twenty-two essentials reduced to a single macro.</p>
           </div>
           <span class="tag-type">22</span>
         </div>
@@ -890,7 +892,7 @@
       <article class="rack reveal">
         <div class="rack-head">
           <div>
-            <span class="desig">FX·02 — Series</span>
+            <span class="desig">FX·02 <b>•</b> Series</span>
             <h3>1KMB Series</h3>
             <p class="desc">The 1K dynamics, gone four-band.</p>
           </div>
@@ -908,9 +910,9 @@
       <article class="rack reveal">
         <div class="rack-head">
           <div>
-            <span class="desig">FX·03 — Series</span>
+            <span class="desig">FX·03 <b>•</b> Series</span>
             <h3>2K Series</h3>
-            <p class="desc">Two knobs, more reach — multimode distortion and filtering.</p>
+            <p class="desc">Two knobs, more reach, multimode distortion and filtering.</p>
           </div>
           <span class="tag-type">2</span>
         </div>
@@ -923,9 +925,9 @@
       <article class="rack reveal">
         <div class="rack-head">
           <div>
-            <span class="desig">FX·04 — Dynamics</span>
+            <span class="desig">FX·04 <b>•</b> Dynamics</span>
             <h3>Dynamics &amp; Distortion</h3>
-            <p class="desc">Multiband compressors, expanders, limiters and distortion — SOLO, DUO and PRO variants.</p>
+            <p class="desc">Multiband compressors, expanders, limiters and distortion, SOLO, DUO and PRO variants.</p>
           </div>
           <span class="tag-type">10</span>
         </div>
@@ -946,7 +948,7 @@
       <article class="rack reveal">
         <div class="rack-head">
           <div>
-            <span class="desig">FX·05 — Space</span>
+            <span class="desig">FX·05 <b>•</b> Space</span>
             <h3>Space &amp; Imaging</h3>
             <p class="desc">Binaural placement, spectral morphing, stereo separation and multi-bank reverb/delay.</p>
           </div>
@@ -965,7 +967,7 @@
       <article class="rack reveal">
         <div class="rack-head">
           <div>
-            <span class="desig">FX·06 — Modulation</span>
+            <span class="desig">FX·06 <b>•</b> Modulation</span>
             <h3>Modulation &amp; Sequencing</h3>
             <p class="desc">Multiband modulation plus MIDI-driven effect sequencers and note-based processors.</p>
           </div>
@@ -985,7 +987,7 @@
       <article class="rack reveal">
         <div class="rack-head">
           <div>
-            <span class="desig">FX·07 — Mixing</span>
+            <span class="desig">FX·07 <b>•</b> Mixing</span>
             <h3>Mixing &amp; Routing</h3>
             <p class="desc">Channel strip, four-track DJ mixer and a controller for up to 12 effects at once.</p>
           </div>
@@ -1001,7 +1003,7 @@
       <article class="rack reveal">
         <div class="rack-head">
           <div>
-            <span class="desig">FX·08 — Character</span>
+            <span class="desig">FX·08 <b>•</b> Character</span>
             <h3>Filters &amp; Character</h3>
             <p class="desc">Guitar amp simulation, all-pass and multi-LFO filtering, and formant shaping.</p>
           </div>
@@ -1019,7 +1021,7 @@
       <article class="rack reveal">
         <div class="rack-head">
           <div>
-            <span class="desig">FX·09 — Texture</span>
+            <span class="desig">FX·09 <b>•</b> Texture</span>
             <h3>Resonance &amp; Texture</h3>
             <p class="desc">Tuned resonators, tape-based ambience, noise following and harmonic lead layering.</p>
           </div>
@@ -1043,9 +1045,9 @@
       <div>
         <span class="kicker">Downloads</span>
         <h2>Where to get the stuff?</h2>
-        <p>Most Patcher presets ship inside FL Studio — nothing to download. Sample/loops packs and FLEX packs are separate releases.</p>
+        <p>Most Patcher presets ship inside FL Studio, nothing to download. Sample/loops packs and FLEX packs are separate releases.</p>
       </div>
-      <span class="sec-index">DL · 06</span>
+      <span class="sec-index">DL <b>•</b> 06</span>
     </div>
 
     <div class="dl-grid">
@@ -1071,12 +1073,12 @@
 
       <a class="dl-card reveal" href="https://www.image-line.com/fl-studio/samples-loops-presets/wiselabs-bass-music--" target="_blank" rel="noopener">
         <span class="dl-thumb"><img src="assets/flex/wiselabs-bass-music.webp" alt="WiseLabs Bass Music artwork" loading="lazy" decoding="async"></span>
-        <span class="dl-info"><span class="dl-name">WiseLabs Bass Music</span><span class="dl-kind">Harmor Presets · 150</span><span class="more">More infos… →</span></span>
+        <span class="dl-info"><span class="dl-name">WiseLabs Bass Music</span><span class="dl-kind">Harmor Presets <b>•</b> 150</span><span class="more">More infos… →</span></span>
       </a>
 
       <a class="dl-card reveal" href="https://www.image-line.com/fl-studio-news/wiselabs-guitar-loops-directwave-presets" target="_blank" rel="noopener">
         <span class="dl-thumb"><img src="assets/flex/wiselabs-guitar-loops.webp" alt="WiseLabs Guitar Loops artwork" loading="lazy" decoding="async"></span>
-        <span class="dl-info"><span class="dl-name">WiseLabs Guitar Loops</span><span class="dl-kind">Loops + DirectWave · 870+</span><span class="more">More infos… →</span></span>
+        <span class="dl-info"><span class="dl-name">WiseLabs Guitar Loops</span><span class="dl-kind">Loops + DirectWave <b>•</b> 870+</span><span class="more">More infos… →</span></span>
       </a>
 
       <a class="dl-card reveal" href="https://forum.image-line.com/viewtopic.php?p=1669382#p1669382" target="_blank" rel="noopener">
@@ -1086,12 +1088,12 @@
 
       <div class="dl-card reveal">
         <span class="dl-thumb"><img src="assets/flex/synthetix-beats.webp" alt="Synthetix Beats artwork" loading="lazy" decoding="async"></span>
-        <span class="dl-info"><span class="dl-name">Synthetix Beats</span><span class="dl-kind">FL Mobile · 500 loops</span><span class="dl-soon">In the FL Mobile shop</span></span>
+        <span class="dl-info"><span class="dl-name">Synthetix Beats</span><span class="dl-kind">FL Mobile <b>•</b> 500 loops</span><span class="dl-soon">In the FL Mobile shop</span></span>
       </div>
 
       <div class="dl-card reveal">
         <span class="dl-thumb"><img src="assets/flex/sliced-synth-sequences.webp" alt="Sliced Synth Sequences artwork" loading="lazy" decoding="async"></span>
-        <span class="dl-info"><span class="dl-name">Sliced Synth Sequences</span><span class="dl-kind">FL Mobile · 500 loops</span><span class="dl-soon">In the FL Mobile shop</span></span>
+        <span class="dl-info"><span class="dl-name">Sliced Synth Sequences</span><span class="dl-kind">FL Mobile <b>•</b> 500 loops</span><span class="dl-soon">In the FL Mobile shop</span></span>
       </div>
     </div>
   </section>
@@ -1104,7 +1106,7 @@
         <h2>Tips &amp; Tutorials</h2>
         <p>Practical techniques and full safety guide for <b style="color:var(--ink)">clean</b> <span style="color:var(--accent)">sample production</span>.</p>
       </div>
-      <span class="sec-index">TIP · 01</span>
+      <span class="sec-index">TIP <b>•</b> 01</span>
     </div>
 
     <article class="tut reveal">
@@ -1154,19 +1156,19 @@
         </svg>
       </figure>
       <div class="tut-body">
-        <span class="kicker">Tutorial · Sample Production</span>
-        <h3>Clean Sample Envelopes: Transient In, Tail Out</h3>
-        <p class="tut-lead">Clicks happen when amplitude changes too abruptly. The goal is simple: <b>enter and leave the sound smoothly</b> — without needlessly weakening its transient or its tail.</p>
+        <span class="kicker">Tutorial <b>•</b> Sample Production</span>
+        <h3>Clean Sample Envelopes:<br> Transient In, Tail Out</h3>
+        <p class="tut-lead">Clicks happen when amplitude changes too abruptly. The goal is simple: <b>enter and leave the sound smoothly</b>, without needlessly weakening its transient or its tail.</p>
         <ol class="tut-steps">
-          <li><span class="k" style="color:#8fd633">Attack</span> — use the shortest fade that removes the click.
-            <span class="tut-hint">Typical 0.1–2 ms for percussion; longer for low-end or badly-cut material. Judge transient loss against the remaining click.</span></li>
-          <li><span class="k" style="color:#ff1e9a">Decay</span> — shapes the transition from the peak down to the sustain level.
+          <li><span class="k" style="color:#8fd633">Attack</span> <b>•</b> use the shortest fade that removes the click.
+            <span class="tut-hint">Typical 0.1-2 ms for percussion; longer for low-end or badly-cut material. Judge transient loss against the remaining click.</span></li>
+          <li><span class="k" style="color:#ff1e9a">Decay</span> <b>•</b> shapes the transition from the peak down to the sustain level.
             <span class="tut-hint">Steep = tighter, more percussive; <span style="color:#ff8fd0">slower or curved</span> = softer, more natural. Still applies even when sustain is zero.</span></li>
-          <li><span class="k" style="color:#f3c9a2">Sustain</span> — the level held while the note stays active.
+          <li><span class="k" style="color:#f3c9a2">Sustain</span> <b>•</b> the level held while the note stays active.
             <span class="tut-hint">A level, not a duration. High for held sounds, low for plucks, zero for one-shot-style envelopes.</span></li>
-          <li><span class="k" style="color:#2f86e0">Release</span> — returns smoothly to silence when the note is let go.
+          <li><span class="k" style="color:#2f86e0">Release</span> <b>•</b> returns smoothly to silence when the note is let go.
             <span class="tut-hint">Short = controlled; <span style="color:#33d2e6">longer</span> = more spacious. Depends on the playback mode, and very short releases can click.</span></li>
-          <li><span class="k" style="color:#ff9a3d">Check the boundaries</span> — make sure the gain envelope reaches zero amplitude at both ends.
+          <li><span class="k" style="color:#ff9a3d">Check the boundaries</span> <b>•</b> make sure the gain envelope reaches zero amplitude at both ends.
             <span class="tut-hint">For loops, inspect both loop points and crossfade if needed. Also watch for DC offset and abrupt processing changes.</span></li>
         </ol>
       </div>
@@ -1178,7 +1180,7 @@
     <div class="about-grid about">
       <div class="reveal">
         <span class="kicker">About</span>
-        <p class="quote">“Complex sound design, surgical microediting, and experiments on <b>earminds</b>.”</p>
+        <p class="quote">“Complex sound design, surgical microediting, and <b>earmind</b> experiments.”</p>
         <p class="exp-line" id="exp-line">28 years of sound design &amp; music production</p>
         <div class="facts">
           <span class="fact">Since 1998</span>
@@ -1188,10 +1190,10 @@
       </div>
       <div class="reveal">
         <p><span class="em">WiseLabs</span> is a French music producer and sound designer.</p>
-        <p>It started in 1998 on <span class="em">Music</span> — Jester Interactive's studio-in-a-game for PlayStation — with tracks bounced to cassette through the family hi-fi and a tangle of RCA cables, then moved to the PC and DAWs by 2000, settling into a long-running preference for FL Studio — Image-Line's DAW, started in 1997 in Belgium.</p>
-        <p>Plenty of others came through along the way: Hammerhead, ModPlug Tracker (now OpenMPT), Guitar Pro, Live, Reason, Renoise, Bitwig — and a long tail of smaller music-production tools, picked up for whatever sound design they made possible.</p>
-        <p>A multi-instrumentalist by ear: drums and anything percussive, keys, synths and pianos, guitars, basses and other strings, plus pads and controllers. That hands-on range feeds the sound design — building instruments and effects entirely from native devices and recordings from various devices or situations rather than reaching for third-party plugins.</p>
-        <p>Before WiseLabs came <span class="em">FetOo</span> — an electro/bass alias signed to <span class="em">23 labels</span>, played across Europe, and also at a festival for a <span class="em">3,000+</span> crowd, with an exclusive track composed that same day, in a few hours, specifically for the show — alongside a flood of originals and remixes.</p>
+        <p>It started in 1998 on <span class="em">Music</span>, Jester Interactive's studio-in-a-game for PlayStation, with tracks bounced to cassette through the family hi-fi and a tangle of RCA cables, then moved to the PC and DAWs by 2000, settling into a long-running preference for FL Studio, Image-Line's DAW, started in 1997 in Belgium.</p>
+        <p>Plenty of others came through along the way: Hammerhead, ModPlug Tracker (now OpenMPT), Guitar Pro, Live, Reason, Renoise, Bitwig, and a long tail of smaller music-production tools, picked up for whatever sound design they made possible.</p>
+        <p>A multi-instrumentalist by ear: drums and anything percussive, keys, synths and pianos, guitars, basses and other strings, plus pads and controllers. That hands-on range feeds the sound design, building instruments and effects entirely from native devices and recordings from various devices or situations rather than reaching for third-party plugins.</p>
+        <p>Before WiseLabs came <span class="em">FetOo</span>, an electro/bass alias signed to <span class="em">23 labels</span>, played across Europe, and also at a festival for a <span class="em">3,000+</span> crowd, with an exclusive track composed that same day, in a few hours, specifically for the show, alongside a flood of originals and remixes.</p>
         <p>Stages shared with <span class="em">Kill The Noise, Benga, Proxy, Joe Ford, Arkasia, Son of Kick, Troublegum</span> and <span class="em">Silent Frequencies</span>. Releases landed on Heavy Artillery (US), Black Hole (NL), Kannibalen (CA), Pyramid (CA), Dirty Duck Audio (CA), Straight Up! (US), Jet Set Trash (UK), Freakz Me Out (DE), No Sense of Place (IT) and Phonon (FR), among others.</p>
         <!-- contacts removed -->
       </div>
@@ -1201,7 +1203,7 @@
   <!-- ===================== SOUNDCLOUD (secondary, bottom) ===================== -->
   <section id="listen" class="wrap sc-strip">
     <div class="sc-head reveal">
-      <span class="kicker dim">Recent music catalog · SoundCloud</span>
+      <span class="kicker dim">Recent music catalog <b>•</b> SoundCloud</span>
     </div>
     <div class="reveal">
       <iframe class="sc-embed" title="WiseLabs on SoundCloud" scrolling="no" allow="autoplay" loading="lazy"
@@ -1217,7 +1219,7 @@
         <svg class="logo" viewBox="0 0 272.99 31.79" role="img" aria-label="WiseLabs">
           <path d="M1,28.79V2.9h7.06v18.83h7.06V2.9h7.06v18.83h7.06V2.9h7.06v25.89H1z M38.65,28.79V2.9h7.06v25.89H38.65z M48.07,28.79v-7.06h28.24v-2.35H48.07V2.9h35.3v7.06H55.13v2.35h28.24v16.47H48.07z M85.72,28.79V2.9h35.3v16.47H92.78v2.35h28.24v7.06H85.72z M113.96,12.32V9.96H92.78v2.35H113.96z M123.38,28.79V2.9h7.06v18.83h28.24v7.06H123.38z M161.03,28.79V12.32h28.24V9.96h-28.24V2.9h35.3v25.89H161.03z M189.27,21.73v-2.35h-21.18v2.35H189.27z M198.68,28.79V2.9h7.06v9.41h28.24v16.47H198.68z M226.92,21.73v-2.35h-21.18v2.35H226.92z M236.34,28.79v-7.06h28.24v-2.35h-28.24V2.9h35.3v7.06H243.4v2.35h28.24v16.47H236.34z"/>
         </svg>
-        <p class="foot-note">sound design · audio production · music · bass music · since 1998.</p>
+        <p class="foot-note">sound design <b>•</b> audio production <b>•</b> music <b>•</b> bass music <b>•</b> since 1998.</p>
       </div>
       <nav class="foot-links" aria-label="Footer">
         <a href="#music">Music</a>
@@ -1229,7 +1231,7 @@
         <a href="https://soundcloud.com/wiselabs" target="_blank" rel="noopener">SoundCloud</a>
       </nav>
     </div>
-    <p class="foot-note">© <span id="yr">2026</span> WiseLabs — All rights reserved.</p>
+    <p class="foot-note">© <span id="yr">2026</span> WiseLabs <b>•</b> All rights reserved.</p>
   </div>
 </footer>
 
@@ -1304,20 +1306,20 @@
   // the line reads like a punchy, detailed audio scope. Secondary traces are
   // pushed to distinct hue offsets for a clear chromatic split.
   var traces = [
-    // deep back layer — widest hue offset, slow and faint
+    // deep back layer • widest hue offset, slow and faint
     {amp:0.15, sp:0.42, a:0.08, hue:-36, lw:1, glow:0,
      parts:[{f:1,a:1,ph:0.2},{f:2,a:0.5,ph:1.4},{f:3,a:0.3,ph:2.6},{f:4,a:0.2,ph:0.5},{f:6,a:0.1,ph:1.9},{f:9,a:0.05,ph:0.8}]},
-    // back layer — opposite hue push
+    // back layer • opposite hue push
     {amp:0.11, sp:-0.72, a:0.13, hue:32, lw:1, glow:0,
      parts:[{f:2,a:0.85,ph:0.4},{f:3,a:0.55,ph:1.7},{f:4,a:0.36,ph:0.2},{f:6,a:0.22,ph:2.0},{f:9,a:0.11,ph:0.9},{f:13,a:0.05,ph:1.5}]},
-    // mid detail — fast, jagged, high harmonics
+    // mid detail • fast, jagged, high harmonics
     {amp:0.09, sp:1.05, a:0.17, hue:-20, lw:1, glow:6,
      parts:[{f:3,a:0.7,ph:0.4},{f:5,a:0.52,ph:1.7},{f:7,a:0.36,ph:0.2},{f:10,a:0.24,ph:2.0},{f:14,a:0.13,ph:0.9},{f:19,a:0.06,ph:1.5}]},
-    // hero trace — rich harmonic series, bold and glowing, pure accent
+    // hero trace • rich harmonic series, bold and glowing, pure accent
     {amp:0.2, sp:0.4, a:0.64, hue:0, lw:2.4, glow:18,
      parts:[{f:1,a:1,ph:0.0},{f:2,a:0.56,ph:0.9},{f:3,a:0.38,ph:1.8},{f:4,a:0.27,ph:0.5},{f:5,a:0.2,ph:2.2},{f:7,a:0.13,ph:1.2},{f:9,a:0.08,ph:0.3},{f:12,a:0.05,ph:2.6},{f:16,a:0.03,ph:1.0}]}
   ];
-  // quadruple the overtone count — extend each trace with higher harmonics (1/f falloff)
+  // quadruple the overtone count • extend each trace with higher harmonics (1/f falloff)
   traces.forEach(function(tr){
     var base = tr.parts.length, lastF = tr.parts[base-1].f;
     for (var i=1; i<=base*3; i++){ var f = lastF + i*2; tr.parts.push({f:f, a:0.85/f, ph:(i*1.37)%6.2832}); }
@@ -1344,7 +1346,7 @@
     // two layers of "grit" give the trace punchy, scope-like detail
     v += 0.09 * Math.sin(nx*TAU*23 + t*2.6) * Math.sin(nx*TAU*4);
     v += 0.05 * Math.sin(nx*TAU*37 + t*3.7);
-    // hashed noise floor — scaled later by amp/env so it tapers with the trace
+    // hashed noise floor • scaled later by amp/env so it tapers with the trace
     v += NOISE * hashNoise(nx*911.7 + tr.seed + Math.floor(t*6)*57.1);
     return v;
   }
@@ -1371,7 +1373,13 @@
     }
   }
   if (reduce){ wave(0.6); }
-  else { var start = performance.now(); (function loop(now){ wave((now-start)/1000*4); requestAnimationFrame(loop); })(start); }
+  else {
+    var start = performance.now(), last = -1, FRAME = 1000/23;   // cap the scope to ~23fps
+    (function loop(now){
+      requestAnimationFrame(loop);
+      if (now - last >= FRAME){ last = now; wave((now-start)/1000*4); }
+    })(start);
+  }
 })();
 </script>
 
@@ -1391,7 +1399,7 @@
   var sw=document.querySelector('.accentbar .swatch') || document.querySelector('.swatch'),
       egg=document.getElementById('egg'), xbtn=document.getElementById('egg-x');
   var cnt=0, timer=0, shown=false, need=8;
-  var DBG=/knock/i.test(location.hash+location.search), box=null, lastHit='—';
+  var DBG=/knock/i.test(location.hash+location.search), box=null, lastHit='•';
   function render(){ if(!box) return;
     box.textContent='KNOCK DEBUG\nswatch target: '+(!!sw)+'\naccent-swatch clicks: '+cnt+' / '+need+'\nlast click: '+lastHit; }
   if(DBG){ box=document.createElement('div');
