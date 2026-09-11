@@ -386,6 +386,51 @@
   .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
   @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  /* ===================== web tools (FPS/FPB + name gen) ===================== */
+  .tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:stretch}
+  @media (max-width:820px){.tools-grid{grid-template-columns:1fr}}
+  .tool{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:22px 22px 20px;display:flex;flex-direction:column}
+  .tool-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+  .tool-h h3{margin:0;font-size:1.05rem;font-weight:800;letter-spacing:-.01em}
+  .tool-h .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);white-space:nowrap}
+  .tool .hint{font-family:var(--mono);font-size:.7rem;color:var(--silver);margin:8px 0 16px;line-height:1.5}
+  .trow{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .trow .lb{width:118px;flex:none;font-family:var(--mono);font-size:.72rem;letter-spacing:.02em;color:var(--silver);text-transform:lowercase}
+  .trow .lb b{color:var(--ink);font-weight:600}
+  .tin{flex:1;min-width:0;background:var(--void-2);border:1px solid var(--line);border-radius:9px;color:var(--ink);font-family:var(--mono);font-size:.95rem;padding:9px 11px;outline:none;transition:border-color .15s,box-shadow .15s}
+  .tin:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-14)}
+  .tin::placeholder{color:var(--dim)}
+  .tout{flex:1;min-width:0;background:var(--void-2);border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-family:var(--mono);font-size:.95rem;color:var(--accent);font-variant-numeric:tabular-nums;min-height:38px;display:flex;align-items:center;text-shadow:0 0 12px var(--accent-30)}
+  .tstep{display:flex;gap:6px;flex:none}
+  .tstep button,.tbtn{font-family:var(--mono);cursor:pointer;color:var(--ink);background:var(--panel-2);border:1px solid var(--line-2);border-radius:8px;transition:border-color .15s,background .15s,transform .05s}
+  .tstep button{width:36px;height:38px;font-size:1.05rem;line-height:1}
+  .tstep button:hover,.tbtn:hover{border-color:var(--accent);color:var(--ink)}
+  .tstep button:active{transform:translateY(1px)}
+  .tstat{margin-top:14px;background:var(--void-2);border:1px solid var(--line);border-left:3px solid var(--line);border-radius:9px;padding:11px 13px;font-family:var(--mono);font-size:.74rem;line-height:1.55;color:var(--silver);transition:border-color .2s}
+  .tstat.good{border-left-color:#4fd08a}
+  .tstat.warn{border-left-color:var(--accent)}
+  .tstat .hh{color:var(--ink);font-weight:600}
+  .tstat.good .hh{color:#63d99a}
+  .tstat.warn .hh{color:var(--accent)}
+  .tname{background:var(--void-2);border:1px solid var(--line);border-radius:var(--rad);padding:18px;text-align:center;position:relative}
+  .tname .val{font-family:var(--mono);font-weight:700;font-size:clamp(1.6rem,4.5vw,2.3rem);letter-spacing:.02em;color:var(--accent);word-break:break-all;line-height:1.2;min-height:1.2em;text-shadow:0 0 24px var(--accent-30)}
+  .tname .cp{position:absolute;top:9px;right:9px;font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);background:transparent;border:1px solid var(--line-2);border-radius:6px;padding:4px 8px;cursor:pointer;transition:.15s}
+  .tname .cp:hover{border-color:var(--accent);color:var(--ink)}
+  .tgen{width:100%;margin-top:12px;font-family:var(--mono);font-weight:700;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent);border:none;border-radius:10px;padding:13px;cursor:pointer;box-shadow:0 8px 24px -12px var(--accent-glow);transition:transform .15s,filter .15s}
+  .tgen:hover{transform:translateY(-1px);filter:brightness(1.06)}
+  .tctrls{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;margin-top:14px}
+  .tctrls .c{display:flex;flex-direction:column;gap:5px}
+  .tctrls label{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+  .tsel,.tfirst{background:var(--panel-2);border:1px solid var(--line);border-radius:8px;color:var(--ink);font-family:var(--mono);font-size:.8rem;padding:8px 9px;outline:none;transition:border-color .15s}
+  .tsel:focus,.tfirst:focus{border-color:var(--accent)}
+  .tfirst{text-transform:uppercase;width:100%}
+  .tnum{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel-2)}
+  .tnum button{width:34px;font-family:var(--mono);font-size:1rem;color:var(--ink);background:transparent;border:none;cursor:pointer}
+  .tnum button:hover{background:rgba(255,255,255,.05);color:var(--accent)}
+  .tnum .v{flex:1;text-align:center;align-self:center;font-family:var(--mono);font-size:.82rem;font-variant-numeric:tabular-nums}
+  .ttoast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--accent);color:var(--accent-ink);font-family:var(--mono);font-size:.72rem;font-weight:700;padding:9px 16px;border-radius:8px;transition:.2s;pointer-events:none;z-index:60;letter-spacing:.04em}
+  .ttoast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
@@ -427,7 +472,7 @@
       <a class="navlink" href="#effects">Patcher FX</a>
       <a class="navlink" href="#downloads">Downloads</a>
       <a class="navlink" href="#tips">Tips</a>
-      <a class="navlink" href="#about">About</a>
+      <a class="navlink" href="#tools">Tools</a>
       <span class="social">
         <a class="btn-yt" href="https://www.youtube.com/@wiselabsmusic" target="_blank" rel="noopener" aria-label="WiseLabs on YouTube">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.4-.43-5.03a2.62 2.62 0 0 0-1.84-1.85C19.09 4.7 12 4.7 12 4.7s-7.09 0-8.73.42a2.62 2.62 0 0 0-1.84 1.85C1 8.6 1 12 1 12s0 3.4.43 5.03c.24.9.94 1.6 1.84 1.85 1.64.42 8.73.42 8.73.42s7.09 0 8.73-.42a2.62 2.62 0 0 0 1.84-1.85C23 15.4 23 12 23 12zM9.75 15.5v-7l6 3.5-6 3.5z"/></svg>
@@ -1205,6 +1250,42 @@
     </div>
   </section>
 
+  <!-- ===================== WEB TOOLS ===================== -->
+  <section id="tools" class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="kicker">Tools</span>
+        <h2 class="chrome">Production tools</h2>
+        <p>Sync an animation’s framerate to the beat, roll pronounceable random names.. more tools to come, stay tuned.</p>
+      </div>
+    </div>
+    <div class="tools-grid reveal">
+
+      <div class="tool" id="tool-fpb">
+        <div class="tool-h"><h3>FPS / FPB Optimizer</h3><span class="tag">tempo → framerate</span></div>
+        <p class="hint">Find framerates that land a whole number of frames on every beat, so animation loops lock to the music. (for animators and editors, final render may still need a commonly used standard)</p>
+        <div class="trow"><span class="lb">beats / min</span><input class="tin" id="fpb-bpm" inputmode="decimal" placeholder="e.g. 128" autocomplete="off"><span class="tstep"><button data-t="bpm" data-d="-1" aria-label="BPM down">−</button><button data-t="bpm" data-d="1" aria-label="BPM up">+</button></span></div>
+        <div class="trow"><span class="lb">frames / sec</span><input class="tin" id="fpb-fps" inputmode="decimal" placeholder="e.g. 30" autocomplete="off"><span class="tstep"><button data-t="fps" data-d="-1" aria-label="FPS down">−</button><button data-t="fps" data-d="1" aria-label="FPS up">+</button></span></div>
+        <div class="trow"><span class="lb"><b>frames / beat</b></span><div class="tout" id="fpb-fpb">—</div></div>
+        <div class="tstat" id="fpb-stat"><span class="hh">No info</span><br>Enter a BPM and FPS to begin.</div>
+      </div>
+
+      <div class="tool" id="tool-ng">
+        <div class="tool-h"><h3>Random Name Generator</h3><span class="tag">~800 syllables</span></div>
+        <p class="hint">Pronounceable-ish names for anything you like, from a custom and hand-built syllable library.</p>
+        <div class="tname"><button class="cp" id="ng-copy">Copy</button><div class="val" id="ng-name">—</div></div>
+        <button class="tgen" id="ng-gen">Generate</button>
+        <div class="tctrls">
+          <div class="c"><label for="ng-mode">Mode</label><select class="tsel" id="ng-mode"><option value="0" selected>Arranged 1</option><option value="3">Arranged 2</option><option value="1">Gibberish</option><option value="2">Garbage</option></select></div>
+          <div class="c"><label for="ng-case">Case</label><select class="tsel" id="ng-case"><option value="0" selected>Capitalized</option><option value="1">UPPERCASE</option><option value="2">lowercase</option></select></div>
+          <div class="c"><label>Length</label><div class="tnum"><button id="ng-lm" aria-label="Shorter">−</button><div class="v" id="ng-lv">6</div><button id="ng-lp" aria-label="Longer">+</button></div></div>
+          <div class="c"><label for="ng-first">First letter</label><input class="tfirst" id="ng-first" maxlength="1" placeholder="—" autocomplete="off"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ===================== SOUNDCLOUD (secondary, bottom) ===================== -->
   <section id="listen" class="wrap sc-strip">
     <div class="sc-head reveal">
@@ -1433,6 +1514,130 @@
   });
   xbtn.addEventListener('click', hide);
   document.addEventListener('keydown', function(e){ if(e.key==='Escape' && shown) hide(); });
+})();
+</script>
+
+<script>
+/* ===================== Producer web tools ===================== */
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var toastEl=null, toastT=0;
+  function toast(m){
+    if(!toastEl){ toastEl=document.createElement('div'); toastEl.className='ttoast'; document.body.appendChild(toastEl); }
+    toastEl.textContent=m; toastEl.classList.add('on'); clearTimeout(toastT);
+    toastT=setTimeout(function(){ toastEl.classList.remove('on'); },1100);
+  }
+  function copy(text){
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(function(){toast('Copied · '+text);},function(){toast(text);}); }
+    else { toast(text); }
+  }
+
+  /* ---- FPS / FPB Optimizer ---- */
+  (function(){
+    var bpmEl=$('fpb-bpm'), fpsEl=$('fpb-fps'); if(!bpmEl) return;
+    var fpbEl=$('fpb-fpb'), st=$('fpb-stat');
+    function num(el){ var v=parseFloat(String(el.value).replace(',','.')); return isFinite(v)?v:NaN; }
+    function fmt(x){ return (Math.round(x*1000)/1000).toString(); }
+    function nearWhole(x){ return Math.abs(x-Math.round(x))<1e-6; }
+    function setStat(cls,head,sub){ st.className='tstat'+(cls?(' '+cls):''); st.innerHTML='<span class="hh">'+head+'</span>'+(sub?('<br>'+sub):''); }
+    function calc(){
+      var bpm=num(bpmEl), fps=num(fpsEl);
+      if(!(bpm>0)||!(fps>0)){ fpbEl.textContent='—'; setStat('','No info','Enter a positive BPM and FPS.'); return; }
+      var fpb=fps*60/bpm;
+      fpbEl.textContent=fmt(fpb);
+      if(nearWhole(fpb)){ var k=Math.round(fpb);
+        setStat('good','✓ Beat-aligned — '+k+' whole frame'+(k===1?'':'s')+' per beat','Every beat lands on a frame boundary, so a '+k+'-frame loop stays locked to the music.');
+      } else {
+        setStat('warn','✗ FPB = '+fmt(fpb)+' — not a whole number','Frames drift against the beat.');
+      }
+    }
+    function step(t,d){ var el=t==='bpm'?bpmEl:fpsEl, v=num(el); if(!isFinite(v)) v=t==='bpm'?120:30; el.value=Math.max(1,Math.round(v)+d); calc(); }
+    document.querySelectorAll('#tool-fpb .tstep button').forEach(function(b){ b.addEventListener('click',function(){ step(b.dataset.t,parseInt(b.dataset.d,10)); }); });
+    [bpmEl,fpsEl].forEach(function(el){ el.addEventListener('input',calc); el.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); calc(); } }); });
+    bpmEl.value='128'; fpsEl.value='30'; calc();
+  })();
+
+  /* ---- Random Name Generator (ported from untitled15) ---- */
+  (function(){
+    var nameEl=$('ng-name'); if(!nameEl) return;
+    var CONSON="BCDFGHJLMNPRSTV", VOWELS="AEIOU", SPECIAL="KQWXYZ";
+    var syl=["er","me","al","in","on","no","Be","to","ay","ar","ma","en","ca","OR","la","Ta","Na","ch","ab","ad","sh","MO","NE","DE","AN","BA","Es","ap","go","re","ae","el","et","op","Ka",
+    "at","hi","AS","US","Ag","AM","os","em","HA","up","lo","CO","UN","li","pe","Ce","PA","AI","DO","ck","AA","id","ya","ex","it","ti","bo","he","fa","Fe","mi","ut","ow","si","ox",
+    "Ho","om","PI","eh","so","Bi","ah","AC","oy","af","Ki","AK","of","OD","my","BR","Cr","um","cl","mu","we","aw","oe","KO","by","jo","nu","ax","AZ","yo",
+    "one","Day","you","tip","Ate","ion","ace","man","ice","art","end","her","car","EST","bee","air","all","ain","ade","sea","ear","out","ist","tea","eye","the","ant","ten","Ted","age",
+    "dog","CAT","red","and","key","own","six","can","sun","ers","Ful","Son","ANG","ish","old","Net","ash","ell","off","cup","bra","tic","ink","PIE","bed","for","are","way","chi","she",
+    "men","ECT","tor","see","sky","tin","now","ray","Ron","SAM","sis","LAN","big","den","ale","ask","boy","act","ton","ail","ere","low","war","per","bus","sin","gin","box","two","pen",
+    "fun","bow","ill","owl","gen","boo","pig","con","ken","moo","DES","ark","web","ham","ram","Lin","pro","win","let","new","INS","Ler","put","Mon","tan","Dis","com","bat","Aar","hat",
+    "ban","cow","bad","bar","eat","fly","too","Han","oil","ead","ben","may","ack","tim","hip","ELF","ski","vin","max","cap","TIA","kin","met","gas","tie","lie","mel","mar","rat","zoo",
+    "FAR","rap","lab","nut","Don","fox","PET","lip","zed","top","egg","joy","not","liv","arm","hen","thi","dad","fat","law","Mya","bay","try","bag","toe","hot","san","pea","pot","civ",
+    "tar","Pan","cha","oat","lea","toy","par","raj","ann","tom","Rus","LED","pat","mom","say","DEA","use","del","sad","MEd","set","ley","RES","him","die","ERT","rey","log","Zen","Leo",
+    "spa","Ney","aft","gal","rad","Jan","Min","pal","hop","mat","CER","gar","cry","amp","pin","Tay","neo","cut","Bel","mac","run","van","bit","bet","biz","meg","dam","tax","lee","row",
+    "sen","lid","tap","sic","nan","bug","rum","pic","lap","pus","bal","gun","lay","ast","boa","lex","bin","won","Mus","pay","get","his","vet","cab","cue","fin","sol","nix","jam","col",
+    "aim","lav","oak","lot","rip","bob","mad","Sus","gel","jet","dip","Bai","phi","oud","oar","eed","ANS","goo","pit","Sue","din","cam","non","jar","ket","rep","Ops","bot","fil","rug",
+    "cot","fan","rev","dow","Sat","ALT","sip","ern","kit","wit","ens","zip","imp","mud","ABB","INC","bib","lam","ROM","fit","aid","mix","zig","pod","sit","eel","sou","arc","inn","DEd",
+    "JEM","hem","tum","baa","pop","viz","rod","CRO","Poe","vac","bye","loo","ALS","coo","bum","nap","bor","fir","cho","hin","yak","fab","rob","mit","jay","ach","deb","fur","kat","wig",
+    "tab","ACC","cop","sum","gee","hoo","awe","aye","zee","kid","lit","flu","hoe","tau","job","sty","MOT","dot","yen","dal","saw","bun","leg","bro","Hus","yea","hug","sap","Kyd","FAO",
+    "yam","bon","lac","hay","mag","dab","var","pad","had","RAS","DAT","nit","rid","EAS","SEC","ats","REM","mop","erg","alp","DEC","SEB","tee","sly","PAC","gem","dim","eon","DOS","Nov",
+    "ait","Hel","sup","gym","pas","orb","mil","shy","how","vag","ATM","hon","LEM","SAS","lev","hap","ush","eld","vie","yes","dig","ult","wax","lad","hut","WAN","lop","lat","NAC","los",
+    "but","bur","Jat","vex","sub","map","tub","URL","ret","buy","hit","dew","asp","rag","beg","Goa","gab","FAQ","guy","fog","pol","gag","oof","pup","fee","lux","hum","Arp","POW","mid",
+    "wet","urn","raw","zap","gum","bud","nog","alb","hog","ewe","peg","our","rot","foe","awl","Reb","oaf","bam","hue","gam","zag","rue","jab","Tho","TAT","Fri","mug","mol","awn","PID",
+    "Fed","nee","jaw","cor","NAD","rim","OMB","rig","tec","fou","das","mum","cob","det","lah","ont","pom","Hun","wag","Ohm","RAF","mos","fro","wow","hex","pun","rub","lag","Wed","nab",
+    "woo","elm","CIS","haw","WHO","unc","few","arf","pel","tun","GUI","dap","sax","Uns","cod","vox","fen","gat","cul","cur","wad","ump","app","sag","het","ADD","AFL","dug","Nox","cub",
+    "lax","bod","vas","fig","due","rah","pug","pox","nag","SOS","mut","wee","cog","eff","fax","tam","Bos","CAD","hub","dry","CID","odd","cos","roc","bub","owe","Sur","sac","soy","yon",
+    "wiz","rut","paw","lox","lei","Wei","ars","why","haj","nod","pip","gig","nth","sir","sod","bap","jag","pes","MAK","pap","psi","bis","ref","rib","qat","DoL","SLE","DoC","tag","opt",
+    "bes","mow","hag","nip","QED","INH","vat","rye","vow","som","duo","SOP","CLI","elk","tad","nil","abs","gap","fib","woe","ESP","HUD","arb","poi","hid","tow","Aix","kos","oft","awk",
+    "Tet","roe","dub","pub","rya","meq","jus","caw","dit","doe","git","tog","bid","jig","NEC","Tai","keg","hie","lob","Mam","jog","pew","adz","bey","Tao","cay","wok","dun","Orr","tug",
+    "tup","hew","err","att","NOC","tot","bog","Unp","HUA","nob","Pei","yet","eft","Yay","wen","bop","pep","nim","mew","mod","Esq","gnu","gib","nib","apt","dak","jib","spy","jug","nay",
+    "lug","Eos","bas","kip","Aug","Mao","mem","coy","dag","gad","ABM","cic","DoJ","OED","Aum","daw","OIS","ELN","NIJ","Oct","hob","FET","loy","mei","kor","yin","tux","mob","Unq","mym",
+    "PIJ","gob","pax","auk","dah","hod","fez","Kwa","sew","arr","hep","pud","Sep","dye","fad","Gur","fry","pry","Wac","lek","doh","ply","pul","cud","Yue","OAS","yaw","sud","moa","GOP",
+    "Sif","Feb","vim","dud","sib","pix","fud","aus","yob","mig","fug","neb","dib","Ayr","cig","dey","CIM","MEK","Geb","Apr","fey","sow","fob","PLO","Fes","AUC","mab","arg","hoy","OIG",
+    "RUF","fid","yip","Lao","tod","wot","yew","ebb","soh","DoD","kea","GAO","Nyx","taw","nun","maw","fay","rho","aul","DoI","irk","leu","Tyr","nub","adc","gut","FAE","lur","yep","XIV",
+    "wog","teg","Urd","olm","caf","lye","teo","sot","agr","hao","zep","jut","Poa","yap","kob","jak","INR","khi","mph","gyp","bah","jot","NIH","POB","Lir","gup","Qum","vom","Keb","Kui",
+    "pya","bae","sro","khu","pyx","mho","Luo","fop","vug","myg","IgM","waw","ana","Ali","Ike","DIA","ism","ore","ire","ave","ope","Eve","ADA","GIA","ONI","ani","ape","era","Rio","Ara",
+    "ola","ary","ane","ago","ala","ame","IDA","ENE","ANO","Abo","ira","ama","aba","Ute","ESE","eau","ita","any","Aga","eta","axe","ado","USA","ivy","Ono","ego","ELA","fix","uke","via",
+    "EPI","oso","ode","pia","Ido","obi","eda","Oto","aby","IOU","IMO","asm","ILO","ata","IgA","Anu","iva","ipa","acy","azo","ICU","Aku","IMU","amy","UDA","Edo","CIO","bio","Uta","avo",
+    "icy","asa","ISI","EPA","ati","abl","oui","oka","Ufa","awa","IgE","Uma","ibo","Uca","oca","emu","lii","aka"];
+    var forbid=["AA","AEA","AOA","ASS","BBC","BBW","BJL","BOY","BRA","BUM","BX","CG","CRP","COC","COK","CUM","DAD","DAM","DCK","DIC","DIE","DIK","DUI","DUM","DYE","EAE","FAG","FAT","FLD","FOB","FOC",
+    "FOK","FUC","FUK","FUQ","FUX","GAE","GAY","GEY","GFY","GHB","GYP","HAG","HIV","HOE","II","JAP","JEW","JIZ","KG","KID","KIL","KKK","KOC","KOK",
+    "KOQ","KUM","LEZ","LPC","LSD","MOM","MUM","NAD","NIG","NUT","OAO","OMG","PCP","PCK","PEE","PIG","PIS","PMS","POO","POT","PRT","PUS","QOC","QOK","QOQ","QUM",
+    "RAT","RIP","RLC","SAD","SEX","SOB","SON","SUX","THC","TIT","TMR","URL","UZI","VAG","WAR","WEE","WET","WOP","WOR","WTF","WW","XXX"];
+    var rnd=function(n){return Math.floor(Math.random()*n)};
+    function bad(s){ var u=s.toUpperCase(); for(var i=0;i<forbid.length;i++){ if(u.indexOf(forbid[i])>=0) return true; } return false; }
+    function isV(ch){ return "AEIOUaeiou".indexOf(ch)>=0; }
+    function firstV(s){ return isV(s.charAt(0)); }
+    function lastV(s){ return isV(s.charAt(s.length-1)); }
+    // Arranged: build whole syllables, stop on a boundary near the target length (no mid-syllable cut).
+    // smooth = alternate consonant/vowel joins so syllables flow (Arranged 2).
+    function buildArranged(len,smooth){ var out,g=0;
+      do{ var parts=[], total=0, prevLastV=null;
+        while(total<len){ var s;
+          if(smooth && prevLastV!==null){ s=null; for(var t=0;t<10;t++){ var c=syl[rnd(syl.length)]; if(firstV(c)!==prevLastV){ s=c; break; } } if(!s) s=syl[rnd(syl.length)]; }
+          else { s=syl[rnd(syl.length)]; }
+          parts.push(s); total+=s.length; prevLastV=lastV(s);
+        }
+        if(parts.length>1){ var without=total-parts[parts.length-1].length; if(without>0 && Math.abs(without-len)<Math.abs(total-len)) parts.pop(); }
+        out=parts.join(''); g++;
+      } while(bad(out)&&g<60); return out; }
+    // Gibberish / Garbage: per-character, exact length.
+    function buildChars(len,mode){ var out,g=0; do{ out=""; for(var i=0;i<len;i++){
+        if(mode===1){ out+=(rnd(2)===0)?CONSON[rnd(CONSON.length)]:VOWELS[rnd(VOWELS.length)]; }
+        else { var d=rnd(3); out+= d===0?CONSON[rnd(CONSON.length)]:(d===1?VOWELS[rnd(VOWELS.length)]:SPECIAL[rnd(SPECIAL.length)]); }
+        if(bad(out)) break;
+      } out=out.slice(0,len); g++; } while(bad(out)&&g<60); return out; }
+    function applyCase(s,c){ if(c===1) return s.toUpperCase(); if(c===2) return s.toLowerCase(); return s.charAt(0).toUpperCase()+s.slice(1).toLowerCase(); }
+    function make(){ var len=parseInt($('ng-lv').textContent,10), mode=parseInt($('ng-mode').value,10), c=parseInt($('ng-case').value,10);
+      var raw=(mode===0)?buildArranged(len,false):(mode===3)?buildArranged(len,true):buildChars(len,mode);
+      var s=applyCase(raw,c), f=$('ng-first').value.trim(); if(f) s=f.toUpperCase()+s.slice(1); return s; }
+    function gen(){ nameEl.textContent=make(); }
+    function setLen(v){ v=Math.max(1,Math.min(20,v)); $('ng-lv').textContent=v; }
+    $('ng-lm').addEventListener('click',function(){ setLen(parseInt($('ng-lv').textContent,10)-1); gen(); });
+    $('ng-lp').addEventListener('click',function(){ setLen(parseInt($('ng-lv').textContent,10)+1); gen(); });
+    $('ng-gen').addEventListener('click',gen);
+    $('ng-copy').addEventListener('click',function(){ var n=nameEl.textContent; if(n&&n!=='—') copy(n); });
+    ['ng-mode','ng-case'].forEach(function(id){ $(id).addEventListener('change',gen); });
+    $('ng-first').addEventListener('input',gen);
+    gen();
+  })();
 })();
 </script>
 </body>
