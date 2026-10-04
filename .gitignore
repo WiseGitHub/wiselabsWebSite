@@ -1,9 +1,5 @@
-# Not part of the website — keep these out of the repo
-
-# Old redesign draft
-attempt.txt
-
-# Local editor / preview config
+# Only what the site serves belongs in this repo: GitHub Pages publishes every tracked file (dotfiles too).
+*.md
 .claude/
 
 # OS clutter
