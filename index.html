@@ -1271,7 +1271,7 @@
       </div>
 
       <div class="tool" id="tool-ng">
-        <div class="tool-h"><h3>Random Name Generator</h3><span class="tag">~800 syllables</span></div>
+        <div class="tool-h"><h3>Random Name Generator</h3><span class="tag">~1150 syllables</span></div>
         <p class="hint">Pronounceable-ish names for anything you like, from a custom and hand-built syllable library.</p>
         <div class="tname"><button class="cp" id="ng-copy">Copy</button><div class="val" id="ng-name">—</div></div>
         <button class="tgen" id="ng-gen">Generate</button>
@@ -1596,40 +1596,77 @@
     "pya","bae","sro","khu","pyx","mho","Luo","fop","vug","myg","IgM","waw","ana","Ali","Ike","DIA","ism","ore","ire","ave","ope","Eve","ADA","GIA","ONI","ani","ape","era","Rio","Ara",
     "ola","ary","ane","ago","ala","ame","IDA","ENE","ANO","Abo","ira","ama","aba","Ute","ESE","eau","ita","any","Aga","eta","axe","ado","USA","ivy","Ono","ego","ELA","fix","uke","via",
     "EPI","oso","ode","pia","Ido","obi","eda","Oto","aby","IOU","IMO","asm","ILO","ata","IgA","Anu","iva","ipa","acy","azo","ICU","Aku","IMU","amy","UDA","Edo","CIO","bio","Uta","avo",
-    "icy","asa","ISI","EPA","ati","abl","oui","oka","Ufa","awa","IgE","Uma","ibo","Uca","oca","emu","lii","aka"];
+    "icy","asa","ISI","EPA","ati","abl","oui","oka","Ufa","awa","IgE","Uma","ibo","Uca","oca","emu","lii","aka",
+    // --- added 2026-10-20: common syllable families (-ing/nasal, -le, r/l/s onset blends, -er agentives, misc) ---
+    "ING","ONG","UNG","ENG","ANK","ONK",
+    "BLE","CLE","DLE","FLE","GLE","KLE","PLE","TLE","ZLE",
+    "DRA","FRA","GRA","TRA","CRA","PRA","DRO","GRO","TRO",
+    "BLA","CLA","FLA","GLA","PLA","SLA","BLO","CLO","FLO","GLO","SLO",
+    "STA","STE","STO","STU","STI","SPO","SPE","SWA","SWE","SWI","SMA","SNA","SNO","SCA","SCO","SKA",
+    "DER","TER","BER","VER","SER","MER","GER","NER","KER","SOR","NOR","DOR",
+    "ICK","OCK","UCK","ECK","OSE","ASE","IVE","OVE","OZE","AZE","IZE","OIN","URE"];
     var forbid=["AA","AEA","AOA","ASS","BBC","BBW","BJL","BOY","BRA","BUM","BX","CG","CRP","COC","COK","CUM","DAD","DAM","DCK","DIC","DIE","DIK","DUI","DUM","DYE","EAE","FAG","FAT","FLD","FOB","FOC",
     "FOK","FUC","FUK","FUQ","FUX","GAE","GAY","GEY","GFY","GHB","GYP","HAG","HIV","HOE","II","JAP","JEW","JIZ","KG","KID","KIL","KKK","KOC","KOK",
     "KOQ","KUM","LEZ","LPC","LSD","MOM","MUM","NAD","NIG","NUT","OAO","OMG","PCP","PCK","PEE","PIG","PIS","PMS","POO","POT","PRT","PUS","QOC","QOK","QOQ","QUM",
-    "RAT","RIP","RLC","SAD","SEX","SOB","SON","SUX","THC","TIT","TMR","URL","UZI","VAG","WAR","WEE","WET","WOP","WOR","WTF","WW","XXX"];
+    "RAT","RIP","RLC","SAD","SEX","SOB","SON","SUX","THC","TIT","TMR","URL","UZI","VAG","WAR","WEE","WET","WOP","WOR","WTF","WW","XXX",
+    // --- added 2026-10-20: tier A (slurs/explicit), tier B (violence/drugs/religion), tier C (mild) ---
+    "SHIT","CRAP","ARSE","ANAL","ANUS","CLIT","PENIS","BONER","KNOB","PUBE","BOOB","BUTT","FART","TURD","WANK","WHORE","PERV","PORN","SEMEN","SPERM","ORGASM","RAPE","PEDO","SPIC","COON","KIKE","GOOK","CHINK","HONKY","HOMO","SPAZ","MIDGET","FECK","FRIG","BLOW",
+    "GUN","BOMB","ISIS","NAZI","HITLER","SATAN","HELL","MURDER","DEATH","BLOOD","GORE","KILL","DRUG","METH","DOPE","GOD",
+    "GIT","TWIT","DUMB","UGLY","LOSER","MORON",
+    // --- added 2026-10-20: D1 (clear slurs / strong vulgarity, from the dictionary-backed producibility scan) ---
+    "WOG","YID","DAGO","PAKI","MONG","SLAG","ISIL","ARYAN","REICH","KLAN","SAMBO","DARKIE","SQUAW","INJUN","SLANT","CUNT","TWAT","DYKE","SKANK","SLUT","ORGY","INCEST","SODOMY","MINGE","NONCE","MOLEST","GROPE","PRICK","LABIA","NECRO","HENTAI","BDSM","GIMP","SMUT","FCK","SLAVER","PIKEY","HEROIN","OPIUM","GANJA",
+    // --- added 2026-10-20: D2 (borderline / real words; broader net, higher collateral) ---
+    "ABO","HUN","NIP","WAD","LAME","MICK","GASH","DONG","KINK","SUCK","WANG","RACK","LOAD","TART","HASH","WINO","CRACK","SMACK","STAB","SLAY","RIFLE","DEMON","BEAST","IDIOT","STUPID","DUNCE","DEALER","FROG","XTC","MDMA","CANUCK","LUSH","JUGS","SPADE"];
     var rnd=function(n){return Math.floor(Math.random()*n)};
     function bad(s){ var u=s.toUpperCase(); for(var i=0;i<forbid.length;i++){ if(u.indexOf(forbid[i])>=0) return true; } return false; }
+    // added 2026-10-20: reject doubled letters, and runs of >2 same-type (vowel/consonant; Y counts as a vowel). Arranged modes only.
+    // NOTE: hasDbl is global (no doubled letters anywhere). For boundary-only (keep BEE/ZOO etc.), compare only letters that straddle a syllable join instead.
+    function hasDbl(s){ for(var i=0;i<s.length-1;i++){ if(s.charAt(i).toUpperCase()===s.charAt(i+1).toUpperCase()) return true; } return false; }
+    function isVY(ch){ return "AEIOUYaeiouy".indexOf(ch)>=0; }
+    function runBad(s){ var run=1; for(var i=1;i<s.length;i++){ if(isVY(s.charAt(i))===isVY(s.charAt(i-1))){ if(++run>2) return true; } else run=1; } return false; }
+    function reject(s){ return bad(s)||hasDbl(s)||runBad(s); }
     function isV(ch){ return "AEIOUaeiou".indexOf(ch)>=0; }
     function firstV(s){ return isV(s.charAt(0)); }
     function lastV(s){ return isV(s.charAt(s.length-1)); }
-    // Arranged: build whole syllables, stop on a boundary near the target length (no mid-syllable cut).
+    // Arranged: EXACT length by construction (2026-10-20). Pick a mix of 2- and 3-letter syllables
+    // that sums exactly to len, then fill each slot — any len>=2 is reachable (len 1 falls back to one
+    // 2-letter syllable). Greedy "stop near the target" (old) landed +-1 ~66% of the time.
     // smooth = alternate consonant/vowel joins so syllables flow (Arranged 2).
+    var syl2=[], syl3=[]; for(var _i=0;_i<syl.length;_i++){ (syl[_i].length===2?syl2:syl3).push(syl[_i]); }
+    function planLens(len){ var lens=[],k;
+      if(len<2){ return [2]; }
+      var opts=[]; for(var t=0;t*3<=len;t++){ if((len-3*t)%2===0) opts.push(t); }
+      var th=opts[rnd(opts.length)];
+      for(k=0;k<th;k++) lens.push(3);
+      for(k=0;k<(len-3*th)/2;k++) lens.push(2);
+      for(k=lens.length-1;k>0;k--){ var j=rnd(k+1), tmp=lens[k]; lens[k]=lens[j]; lens[j]=tmp; } // shuffle
+      return lens; }
     function buildArranged(len,smooth){ var out,g=0;
-      do{ var parts=[], total=0, prevLastV=null;
-        while(total<len){ var s;
-          if(smooth && prevLastV!==null){ s=null; for(var t=0;t<10;t++){ var c=syl[rnd(syl.length)]; if(firstV(c)!==prevLastV){ s=c; break; } } if(!s) s=syl[rnd(syl.length)]; }
-          else { s=syl[rnd(syl.length)]; }
-          parts.push(s); total+=s.length; prevLastV=lastV(s);
+      do{ var lens=planLens(len), parts=[], prevLastV=null, i;
+        for(i=0;i<lens.length;i++){ var pool=(lens[i]===2?syl2:syl3), s;
+          if(smooth && prevLastV!==null){ s=null; for(var t=0;t<10;t++){ var c=pool[rnd(pool.length)]; if(firstV(c)!==prevLastV){ s=c; break; } } if(!s) s=pool[rnd(pool.length)]; }
+          else { s=pool[rnd(pool.length)]; }
+          parts.push(s); prevLastV=lastV(s);
         }
-        if(parts.length>1){ var without=total-parts[parts.length-1].length; if(without>0 && Math.abs(without-len)<Math.abs(total-len)) parts.pop(); }
         out=parts.join(''); g++;
-      } while(bad(out)&&g<60); return out; }
-    // Gibberish / Garbage: per-character, exact length.
+      } while(reject(out)&&g<80); return out; }
+    // Gibberish / Garbage: per-character, exact length. No doubled letters (common to all 4 modes, 2026-10-20);
+    // runs of >2 same-type stay allowed here on purpose (these modes are meant to look random).
+    function pickChar(mode){
+      if(mode===1){ return (rnd(2)===0)?CONSON[rnd(CONSON.length)]:VOWELS[rnd(VOWELS.length)]; }
+      var d=rnd(3); return d===0?CONSON[rnd(CONSON.length)]:(d===1?VOWELS[rnd(VOWELS.length)]:SPECIAL[rnd(SPECIAL.length)]);
+    }
     function buildChars(len,mode){ var out,g=0; do{ out=""; for(var i=0;i<len;i++){
-        if(mode===1){ out+=(rnd(2)===0)?CONSON[rnd(CONSON.length)]:VOWELS[rnd(VOWELS.length)]; }
-        else { var d=rnd(3); out+= d===0?CONSON[rnd(CONSON.length)]:(d===1?VOWELS[rnd(VOWELS.length)]:SPECIAL[rnd(SPECIAL.length)]); }
-        if(bad(out)) break;
-      } out=out.slice(0,len); g++; } while(bad(out)&&g<60); return out; }
+        var ch=pickChar(mode);
+        for(var t=0;t<12 && i>0 && ch.toUpperCase()===out.charAt(i-1).toUpperCase(); t++){ ch=pickChar(mode); } // avoid doubled letter
+        out+=ch; if(bad(out)) break;
+      } out=out.slice(0,len); g++; } while((bad(out)||hasDbl(out))&&g<60); return out; }
     function applyCase(s,c){ if(c===1) return s.toUpperCase(); if(c===2) return s.toLowerCase(); return s.charAt(0).toUpperCase()+s.slice(1).toLowerCase(); }
     function make(){ var len=parseInt($('ng-lv').textContent,10), mode=parseInt($('ng-mode').value,10), c=parseInt($('ng-case').value,10);
       var raw=(mode===0)?buildArranged(len,false):(mode===3)?buildArranged(len,true):buildChars(len,mode);
       var s=applyCase(raw,c), f=$('ng-first').value.trim(); if(f) s=f.toUpperCase()+s.slice(1); return s; }
     function gen(){ nameEl.textContent=make(); }
-    function setLen(v){ v=Math.max(1,Math.min(20,v)); $('ng-lv').textContent=v; }
+    function setLen(v){ v=Math.max(1,Math.min(10,v)); $('ng-lv').textContent=v; }
     $('ng-lm').addEventListener('click',function(){ setLen(parseInt($('ng-lv').textContent,10)-1); gen(); });
     $('ng-lp').addEventListener('click',function(){ setLen(parseInt($('ng-lv').textContent,10)+1); gen(); });
     $('ng-gen').addEventListener('click',gen);
